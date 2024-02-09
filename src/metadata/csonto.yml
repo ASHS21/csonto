@@ -1,0 +1,28 @@
+# PURL configuration for http://purl.obolibrary.org/obo/csonto
+
+idspace: CSONTO
+base_url: /obo/csonto
+
+products:
+- csonto.owl: https://raw.githubusercontent.com/ASHS21/csonto/main/csonto.owl
+- csonto.obo: https://raw.githubusercontent.com/ASHS21/csonto/main/csonto.obo
+
+term_browser: ontobee
+example_terms:
+- CSONTO_0000000
+
+entries:
+
+- prefix: /releases/
+  replacement: https://raw.githubusercontent.com/ASHS21/csonto/v
+
+- prefix: /tracker/
+  replacement: https://github.com/ASHS21/csonto/issues
+
+- prefix: /about/
+  replacement: http://www.ontobee.org/ontology/CSONTO?iri=http://purl.obolibrary.org/obo/
+
+## generic fall-through, serve direct from github by default
+- prefix: /
+  replacement: https://raw.githubusercontent.com/ASHS21/csonto/main/
+
