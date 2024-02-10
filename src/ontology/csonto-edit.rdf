@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://FYP-ASHS21/csonto/"
+     xml:base="http://FYP-ASHS21/csonto/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://FYP-ASHS21/csonto">
+        <owl:versionIRI rdf:resource="http://FYP-ASHS21/csonto/1.0"/>
+        <rdfs:comment>This is the cybersecurity ontology, which represents the overall structure of the cybersecurity organisation. It allows it to monitor its current state and find out about issues by tracing it back.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#ManagedBy -->
+
+    <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto#ManagedBy"/>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#definePolicy -->
+
+    <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto#definePolicy">
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Governance"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Asset_Management_Policies"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Assurance_Policies"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Change_Management_Policies"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies_Policies"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Governance_Policies"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#Security_Operations_Policies"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#reportTo -->
+
+    <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto#reportTo">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Asset_Management"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Assurance"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Change_Management"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Governance"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+        <rdfs:range rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#DataPrivacy -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#DataPrivacy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://FYP-ASHS21/csonto#ManagedBy"/>
+                <owl:allValuesFrom rdf:resource="http://FYP-ASHS21/csonto#Data_Protection"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#rational"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Explainability -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Explainability">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Fairness -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Fairness">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Resilience -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Resilience">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Safety -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Safety">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Transparency -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Transparency">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Trustworthiness -->
+
+    <owl:DatatypeProperty rdf:about="http://FYP-ASHS21/csonto#Trustworthiness">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Asset_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Asset_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Asset_Management_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Asset_Management_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Assurance -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Assurance">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Assurance_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Assurance_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#BusinessContinuity_And_DiasterRecovery -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#BusinessContinuity_And_DiasterRecovery">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Threat_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Capacity_And_Performance_PLanning -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Capacity_And_Performance_PLanning">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Asset_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Change_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Change_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Change_Management_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Change_Management_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Compliance -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Compliance">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Assurance"/>
+        <owl:disjointWith rdf:resource="http://FYP-ASHS21/csonto#Security_Awareness_And_Training"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Configuration_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Configuration_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Asset_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Continuous_Monitoring -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Continuous_Monitoring">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Threat_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#CyberSecurityScore -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Data_Protection -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Data_Protection">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Embdded_Technologies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Embdded_Technologies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Emerging_Technologies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Emerging_Technologies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Emerging_Technologies_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Emerging_Technologies_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Governance -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Governance">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Governance_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Governance_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Incident_Response -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Incident_Response">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Threat_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Infrastructure_And_Identity_And_Access_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Infrastructure_And_Identity_And_Access_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Mobile_Device_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Mobile_Device_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Asset_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Policy -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Policy">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Governance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Risk_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Risk_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Change_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Secure_Engineering_And_Architecture -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Secure_Engineering_And_Architecture">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Change_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Security_Awareness_And_Training -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Security_Awareness_And_Training">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Assurance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Security_Operations -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Security_Operations">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#CyberSecurityScore"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Security_Operations_Policies -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Security_Operations_Policies">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Threat_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Threat_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#Vulnerability_And_Web_Management -->
+
+    <owl:Class rdf:about="http://FYP-ASHS21/csonto#Vulnerability_And_Web_Management">
+        <rdfs:subClassOf rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://FYP-ASHS21/csonto#SetOfPolicies -->
+
+    <owl:NamedIndividual rdf:about="http://FYP-ASHS21/csonto#SetOfPolicies">
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Asset_Management"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Assurance"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#BusinessContinuity_And_DiasterRecovery"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Change_Management"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Continuous_Monitoring"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Data_Protection"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Embdded_Technologies"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Emerging_Technologies"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Governance"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Incident_Response"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Infrastructure_And_Identity_And_Access_Management"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Risk_Management"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Secure_Engineering_And_Architecture"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Security_Operations"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Threat_Management"/>
+        <rdf:type rdf:resource="http://FYP-ASHS21/csonto#Vulnerability_And_Web_Management"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Asset_Management_Policies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Assurance_Policies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Change_Management_Policies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Emerging_Technologies_Policies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Governance_Policies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Security_Operations_Policies"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#BusinessContinuity_And_DiasterRecovery"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Continuous_Monitoring"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Incident_Response"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Capacity_And_Performance_PLanning"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Configuration_Management"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Mobile_Device_Management"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Data_Protection"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Embdded_Technologies"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Infrastructure_And_Identity_And_Access_Management"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Threat_Management"/>
+            <rdf:Description rdf:about="http://FYP-ASHS21/csonto#Vulnerability_And_Web_Management"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+
