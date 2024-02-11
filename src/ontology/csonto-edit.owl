@@ -1,49 +1,473 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://FYP-ASHS21/csonto"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://FYP-ASHS21/csonto"
+     versionIRI="http://FYP-ASHS21/csonto/1.0">
+    <Prefix name="" IRI="http://FYP-ASHS21/csonto/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>This is the cybersecurity ontology, which represents the overall structure of the cybersecurity organisation. It allows it to monitor its current state and find out about issues by tracing it back.</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#Asset_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Asset_Management_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Assurance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Assurance_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BusinessContinuity_And_DiasterRecovery"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Capacity_And_Performance_PLanning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Change_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Change_Management_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Compliance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Configuration_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Continuous_Monitoring"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CyberSecurityScore"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Data_Protection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Embdded_Technologies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Emerging_Technologies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Emerging_Technologies_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Governance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Governance_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Incident_Response"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mobile_Device_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Risk_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Secure_Engineering_And_Architecture"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Security_Awareness_And_Training"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Security_Operations"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Security_Operations_Policies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Threat_Management"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#definePolicy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#reportTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#DataPrivacy"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Explainability"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Fairness"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Resilience"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Safety"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Transparency"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Trustworthiness"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Asset_Management"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Asset_Management"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Asset_Management_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Asset_Management_Policies"/>
+        <Class IRI="#Asset_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Assurance"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Assurance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Assurance_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Assurance_Policies"/>
+        <Class IRI="#Assurance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BusinessContinuity_And_DiasterRecovery"/>
+        <Class IRI="#Threat_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Capacity_And_Performance_PLanning"/>
+        <Class IRI="#Asset_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Change_Management"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Change_Management"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Change_Management_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Change_Management_Policies"/>
+        <Class IRI="#Change_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Compliance"/>
+        <Class IRI="#Assurance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Configuration_Management"/>
+        <Class IRI="#Asset_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Continuous_Monitoring"/>
+        <Class IRI="#Threat_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Data_Protection"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Embdded_Technologies"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Emerging_Technologies"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Emerging_Technologies"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Emerging_Technologies_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Emerging_Technologies_Policies"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Governance_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance_Policies"/>
+        <Class IRI="#Governance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Incident_Response"/>
+        <Class IRI="#Threat_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mobile_Device_Management"/>
+        <Class IRI="#Asset_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Risk_Management"/>
+        <Class IRI="#Change_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Secure_Engineering_And_Architecture"/>
+        <Class IRI="#Change_Management"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Security_Awareness_And_Training"/>
+        <Class IRI="#Assurance"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Security_Operations"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Security_Operations"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
+            <Class IRI="#Security_Operations_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Security_Operations_Policies"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Threat_Management"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+        <Class IRI="#Security_Operations"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Asset_Management_Policies"/>
+        <Class IRI="#Assurance_Policies"/>
+        <Class IRI="#Change_Management_Policies"/>
+        <Class IRI="#Emerging_Technologies_Policies"/>
+        <Class IRI="#Governance_Policies"/>
+        <Class IRI="#Security_Operations_Policies"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#BusinessContinuity_And_DiasterRecovery"/>
+        <Class IRI="#Continuous_Monitoring"/>
+        <Class IRI="#Incident_Response"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capacity_And_Performance_PLanning"/>
+        <Class IRI="#Configuration_Management"/>
+        <Class IRI="#Mobile_Device_Management"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Compliance"/>
+        <Class IRI="#Security_Awareness_And_Training"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Data_Protection"/>
+        <Class IRI="#Embdded_Technologies"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+        <Class IRI="#Threat_Management"/>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+    </DisjointClasses>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#reportTo"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Governance"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Asset_Management"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Assurance"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Change_Management"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Governance"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#Security_Operations"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Asset_Management_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Assurance_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Change_Management_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Emerging_Technologies_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Governance_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#definePolicy"/>
+        <Class IRI="#Security_Operations_Policies"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#reportTo"/>
+        <Class IRI="#CyberSecurityScore"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#DataPrivacy"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Explainability"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Fairness"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Resilience"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Safety"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Transparency"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#Trustworthiness"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#DataPrivacy"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#DataPrivacy"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Explainability"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Fairness"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Resilience"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Safety"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Transparency"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Trustworthiness"/>
+        <Class IRI="#Emerging_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#DataPrivacy"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#DataPrivacy"/>
+        <Datatype abbreviatedIRI="owl:rational"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Explainability"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Fairness"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Resilience"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Safety"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Transparency"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Trustworthiness"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011</IRI>
+        <Literal xml:lang="en">implementsPolicy</Literal>
+    </AnnotationAssertion>
+</Ontology>
 
-Prefix(:=<http://purl.obolibrary.org/obo/csonto.owl#>)
-Prefix(dce:=<http://purl.org/dc/elements/1.1/>)
-Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
-Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
-Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
-Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
-Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
-Prefix(dcterms:=<http://purl.org/dc/terms/>)
 
 
-Ontology(<http://purl.obolibrary.org/obo/csonto.owl>
-
-Import(<http://purl.obolibrary.org/obo/csonto/imports/ro_import.owl>)
-
-Import(<http://purl.obolibrary.org/obo/csonto/imports/bfo_import.owl>)
-
-Import(<http://purl.obolibrary.org/obo/csonto/imports/pato_import.owl>)
-
-
-Annotation(dcterms:description "None")
-Annotation(dcterms:license <https://creativecommons.org/licenses/unspecified>)
-Annotation(dcterms:title "Cybersecurity ontology")
-
-
-Declaration(Class(<http://purl.obolibrary.org/obo/CSONTO_0000000>))
-Declaration(AnnotationProperty(dcterms:description))
-Declaration(AnnotationProperty(dcterms:license))
-Declaration(AnnotationProperty(dcterms:title))
-
-############################
-#   Annotation Properties
-############################
-
-AnnotationAssertion(rdfs:label dcterms:description "description")
-AnnotationAssertion(rdfs:label dcterms:license "license")
-AnnotationAssertion(rdfs:label dcterms:title "title")
-
-############################
-#   Classes
-############################
-
-# Class: <http://purl.obolibrary.org/obo/CSONTO_0000000> (root node)
-
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/CSONTO_0000000> "root node"@en)
-
-
-)
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
 
