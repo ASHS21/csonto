@@ -376,6 +376,48 @@
     <SubClassOf>
         <Class IRI="#Governance"/>
         <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Asset_Management_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Assurance_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Change_Management_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Emerging_Technologies_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Governance_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#definePolicy"/>
+            <Class IRI="#Security_Operations_Policies"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Governance"/>
+        <ObjectSomeValuesFrom>
             <ObjectProperty IRI="http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011"/>
             <Class IRI="#Governance_Policies"/>
         </ObjectSomeValuesFrom>
@@ -464,10 +506,6 @@
         <ObjectProperty IRI="#reportTo"/>
     </TransitiveObjectProperty>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Governance"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
         <ObjectProperty IRI="#reportTo"/>
         <Class IRI="#Asset_Management"/>
     </ObjectPropertyDomain>
@@ -491,30 +529,6 @@
         <ObjectProperty IRI="#reportTo"/>
         <Class IRI="#Security_Operations"/>
     </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Asset_Management_Policies"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Assurance_Policies"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Change_Management_Policies"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Emerging_Technologies_Policies"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Governance_Policies"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#definePolicy"/>
-        <Class IRI="#Security_Operations_Policies"/>
-    </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#reportTo"/>
         <Class IRI="#CyberSecurityScore"/>
@@ -1333,6 +1347,11 @@
         <DataProperty IRI="/SecureStorageAndRemoteManagement:"/>
         <Datatype abbreviatedIRI="xsd:token"/>
     </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
+        <IRI>#definePolicy</IRI>
+        <Literal></Literal>
+    </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011</IRI>
