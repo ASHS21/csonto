@@ -159,22 +159,37 @@
         <DataProperty IRI="/AwarenessCampaignsAndFeedback"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/CMWeight"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/ChangeImpactAssessment"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/ChangeManagementProperities"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="/ChangeManagementWeight"/>
+        <DataProperty IRI="/ComplianceMonoitoring"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="/ComplianceMonoitoring"/>
+        <DataProperty IRI="/ContinuousDev"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/ContinuousMonitoring"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/ContractualFulfillmentAndInternalStandards"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/CryptographicStandards"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/DataClassification"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/DataProtection"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/DataProtectionProperities"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/DeviceOwnershipAndCentralizedManagement"/>
@@ -189,6 +204,9 @@
         <DataProperty IRI="/ETWeight"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/EmergingTechProperities"/>
     </Declaration>
     <Declaration>
@@ -198,10 +216,37 @@
         <DataProperty IRI="/GovernanceProperities"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/HasWeight"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/IncidentResponse"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/InformationProtectionMeasures"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraDataEncryption"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraFirewallImplementation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraNetworkMonitoring"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraSecProperities"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/InvnetoryManagement"/>
@@ -220,6 +265,9 @@
     </Declaration>
     <Declaration>
         <DataProperty IRI="/OpsSecTraining"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/PatchManagement"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/ProactiveChangeAndSecurityIntegration"/>
@@ -255,22 +303,61 @@
         <DataProperty IRI="/SecOpsWeight"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/SerivceProtocolSec"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/ServiceKeyManagement"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/StackHardening"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/StakeholderEngagementInProjects"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/SuccessCriteria"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/ThreatHunting"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/TotalScore"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/TransmissionSec"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/UnifiedSecManagement"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/VulnerabilityAssessment"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/VulnerabilityRemediation"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/ContinuousMonitoring&amp;Analysis"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="/ContinuousMonitoring&amp;Detection"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="/FormalChangeAuthorization&amp;ContractualSecurity"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/IncidentResponse&amp;Planning"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/Mitigation&amp;RemediationStrategies"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="/PerformanceMonitoring&amp;Reporting"/>
@@ -280,6 +367,27 @@
     </Declaration>
     <Declaration>
         <DataProperty IRI="/SecureStorageAndRemoteManagement:"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/UnauthorizedDisclosure&amp;ModificationPrevention"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-01-AssetGovernance"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-01.1-AssetServiceDependencies"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-01.3-StandardizedNamingConvention"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-02-AssetInventories"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-01.2-StakeholderIdentification&amp;Involvement"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/AST-02.1-UpdatesDuringInstallations/AST-02.1-Updates_During_InstallationsORRemovals"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#Asset_Management"/>
@@ -502,6 +610,60 @@
         <Class IRI="#Threat_Management"/>
         <Class IRI="#Vulnerability_And_Web_Management"/>
     </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-01-AssetGovernance"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-01.1-AssetServiceDependencies"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-01.3-StandardizedNamingConvention"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-02-AssetInventories"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-01.2-StakeholderIdentification&amp;Involvement"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Asset_Management_Policies"/>
+        <NamedIndividual IRI="/AST-02.1-UpdatesDuringInstallations/AST-02.1-Updates_During_InstallationsORRemovals"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-01-AssetGovernance"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-01.1-AssetServiceDependencies"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-01.3-StandardizedNamingConvention"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-02-AssetInventories"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-01.2-StakeholderIdentification&amp;Involvement"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/HasWeight"/>
+        <NamedIndividual IRI="/AST-02.1-UpdatesDuringInstallations/AST-02.1-Updates_During_InstallationsORRemovals"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">7</Literal>
+    </DataPropertyAssertion>
     <TransitiveObjectProperty>
         <ObjectProperty IRI="#reportTo"/>
     </TransitiveObjectProperty>
@@ -598,28 +760,48 @@
         <DataProperty IRI="/AssuranceProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/CMWeight"/>
+        <DataProperty IRI="/ChangeManagementProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/CMWeight"/>
+        <DataProperty IRI="/TotalScore"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/ChangeImpactAssessment"/>
         <DataProperty IRI="/ChangeManagementProperities"/>
-    </SubDataPropertyOf>
-    <SubDataPropertyOf>
-        <DataProperty IRI="/ChangeManagementWeight"/>
-        <DataProperty IRI="/ChangeManagementProperities"/>
-    </SubDataPropertyOf>
-    <SubDataPropertyOf>
-        <DataProperty IRI="/ChangeManagementWeight"/>
-        <DataProperty IRI="/TotalScore"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/ComplianceMonoitoring"/>
         <DataProperty IRI="/AssetManagementProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/ContinuousDev"/>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/ContinuousMonitoring"/>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/ContractualFulfillmentAndInternalStandards"/>
         <DataProperty IRI="/AssuranceProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/CryptographicStandards"/>
+        <DataProperty IRI="/DataProtectionProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/DataClassification"/>
+        <DataProperty IRI="/DataProtectionProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/DataProtection"/>
         <DataProperty IRI="/AssetManagementProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/DataProtectionProperities"/>
+        <DataProperty IRI="/SecOpsProprities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/DeviceOwnershipAndCentralizedManagement"/>
@@ -642,6 +824,10 @@
         <DataProperty IRI="/TotalScore"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+        <DataProperty IRI="/SecOpsProprities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/GovWeight"/>
         <DataProperty IRI="/GovernanceProperities"/>
     </SubDataPropertyOf>
@@ -656,6 +842,38 @@
     <SubDataPropertyOf>
         <DataProperty IRI="/InformationProtectionMeasures"/>
         <DataProperty IRI="/AssuranceProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraDataEncryption"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraFirewallImplementation"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraNetworkMonitoring"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraSecProperities"/>
+        <DataProperty IRI="/SecOpsProprities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/InvnetoryManagement"/>
@@ -680,6 +898,10 @@
     <SubDataPropertyOf>
         <DataProperty IRI="/OpsSecTraining"/>
         <DataProperty IRI="/SecOpsProprities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/PatchManagement"/>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/ProactiveChangeAndSecurityIntegration"/>
@@ -726,6 +948,18 @@
         <DataProperty IRI="/TotalScore"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/SerivceProtocolSec"/>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/ServiceKeyManagement"/>
+        <DataProperty IRI="/DataProtectionProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/StackHardening"/>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/StakeholderEngagementInProjects"/>
         <DataProperty IRI="/GovernanceProperities"/>
     </SubDataPropertyOf>
@@ -734,16 +968,56 @@
         <DataProperty IRI="/GovernanceProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/ThreatHunting"/>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
+        <DataProperty IRI="/SecOpsProprities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/TransmissionSec"/>
+        <DataProperty IRI="/EmbeddedTechSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/UnifiedSecManagement"/>
         <DataProperty IRI="/SecOpsProprities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
+        <DataProperty IRI="/SecOpsProprities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/VulnerabilityAssessment"/>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/VulnerabilityRemediation"/>
+        <DataProperty IRI="/VulnerabilitiesManagmenetProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/ContinuousMonitoring&amp;Analysis"/>
         <DataProperty IRI="/SecOpsProprities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
+        <DataProperty IRI="/ContinuousMonitoring&amp;Detection"/>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
         <DataProperty IRI="/FormalChangeAuthorization&amp;ContractualSecurity"/>
         <DataProperty IRI="/ChangeManagementProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/IncidentResponse&amp;Planning"/>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <DataProperty IRI="/InfraSecProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/Mitigation&amp;RemediationStrategies"/>
+        <DataProperty IRI="/ThreatManagmentProperities"/>
     </SubDataPropertyOf>
     <SubDataPropertyOf>
         <DataProperty IRI="/PerformanceMonitoring&amp;Reporting"/>
@@ -756,6 +1030,10 @@
     <SubDataPropertyOf>
         <DataProperty IRI="/SecureStorageAndRemoteManagement:"/>
         <DataProperty IRI="/AssetManagementProperities"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="/UnauthorizedDisclosure&amp;ModificationPrevention"/>
+        <DataProperty IRI="/DataProtectionProperities"/>
     </SubDataPropertyOf>
     <FunctionalDataProperty>
         <DataProperty IRI="#DataPrivacy"/>
@@ -814,10 +1092,10 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ASTWeight"/>
-        <DataMaxCardinality cardinality="929">
+        <DataMinCardinality cardinality="737">
             <DataProperty IRI="/ASTWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ASUWeight"/>
@@ -832,10 +1110,10 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ASUWeight"/>
-        <DataMaxCardinality cardinality="312">
+        <DataMinCardinality cardinality="312">
             <DataProperty IRI="/ASUWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/AccessControl"/>
@@ -866,26 +1144,26 @@
         <Class IRI="#Assurance"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="/ChangeImpactAssessment"/>
+        <DataProperty IRI="/CMWeight"/>
         <Class IRI="#Change_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="/ChangeManagementWeight"/>
-        <Class IRI="#Change_Management"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="/ChangeManagementWeight"/>
+        <DataProperty IRI="/CMWeight"/>
         <DataAllValuesFrom>
-            <DataProperty IRI="/ChangeManagementWeight"/>
+            <DataProperty IRI="/CMWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
         </DataAllValuesFrom>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="/ChangeManagementWeight"/>
-        <DataMaxCardinality cardinality="819">
-            <DataProperty IRI="/ChangeManagementWeight"/>
+        <DataProperty IRI="/CMWeight"/>
+        <DataMinCardinality cardinality="819">
+            <DataProperty IRI="/CMWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/ChangeImpactAssessment"/>
+        <Class IRI="#Change_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ComplianceMonoitoring"/>
@@ -896,8 +1174,24 @@
         <Class IRI="#Compliance"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
+        <DataProperty IRI="/ContinuousDev"/>
+        <Class IRI="#Embdded_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/ContinuousMonitoring"/>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="/ContractualFulfillmentAndInternalStandards"/>
         <Class IRI="#Assurance"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/CryptographicStandards"/>
+        <Class IRI="#Data_Protection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/DataClassification"/>
+        <Class IRI="#Data_Protection"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/DataProtection"/>
@@ -932,10 +1226,10 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ETWeight"/>
-        <DataMaxCardinality cardinality="658">
+        <DataMinCardinality cardinality="658">
             <DataProperty IRI="/ETWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/GovWeight"/>
@@ -950,10 +1244,10 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/GovWeight"/>
-        <DataMaxCardinality cardinality="277">
+        <DataMinCardinality cardinality="277">
             <DataProperty IRI="/GovWeight"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/IncidentResponse"/>
@@ -962,6 +1256,38 @@
     <DataPropertyDomain>
         <DataProperty IRI="/InformationProtectionMeasures"/>
         <Class IRI="#Assurance"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraDataEncryption"/>
+        <Class IRI="#Data_Protection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraDataEncryption"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraFirewallImplementation"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraNetworkMonitoring"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/InvnetoryManagement"/>
@@ -986,6 +1312,10 @@
     <DataPropertyDomain>
         <DataProperty IRI="/OpsSecTraining"/>
         <Class IRI="#Security_Operations"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/PatchManagement"/>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/ProactiveChangeAndSecurityIntegration"/>
@@ -1036,10 +1366,22 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/SecOpsWeight"/>
-        <DataMaxCardinality cardinality="4621">
+        <DataMinCardinality cardinality="4621">
             <DataProperty IRI="/SecOpsProprities"/>
             <Datatype abbreviatedIRI="xsd:long"/>
-        </DataMaxCardinality>
+        </DataMinCardinality>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/SerivceProtocolSec"/>
+        <Class IRI="#Embdded_Technologies"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/ServiceKeyManagement"/>
+        <Class IRI="#Data_Protection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/StackHardening"/>
+        <Class IRI="#Embdded_Technologies"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/StakeholderEngagementInProjects"/>
@@ -1048,6 +1390,10 @@
     <DataPropertyDomain>
         <DataProperty IRI="/SuccessCriteria"/>
         <Class IRI="#Governance"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/ThreatHunting"/>
+        <Class IRI="#Threat_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/TotalScore"/>
@@ -1062,22 +1408,50 @@
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/TotalScore"/>
-        <DataMaxCardinality cardinality="7616">
+        <DataMaxCardinality cardinality="7424">
             <DataProperty IRI="/TotalScore"/>
             <Datatype abbreviatedIRI="xsd:long"/>
         </DataMaxCardinality>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/TransmissionSec"/>
+        <Class IRI="#Embdded_Technologies"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/UnifiedSecManagement"/>
         <Class IRI="#Security_Operations"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
+        <DataProperty IRI="/VulnerabilityAssessment"/>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/VulnerabilityRemediation"/>
+        <Class IRI="#Vulnerability_And_Web_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="/ContinuousMonitoring&amp;Analysis"/>
         <Class IRI="#Security_Operations"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
+        <DataProperty IRI="/ContinuousMonitoring&amp;Detection"/>
+        <Class IRI="#Threat_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="/FormalChangeAuthorization&amp;ContractualSecurity"/>
         <Class IRI="#Change_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/IncidentResponse&amp;Planning"/>
+        <Class IRI="#Threat_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/Mitigation&amp;RemediationStrategies"/>
+        <Class IRI="#Threat_Management"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="/PerformanceMonitoring&amp;Reporting"/>
@@ -1094,6 +1468,10 @@
     <DataPropertyDomain>
         <DataProperty IRI="/SecureStorageAndRemoteManagement:"/>
         <Class IRI="#Infrastructure_And_Identity_And_Access_Management"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/UnauthorizedDisclosure&amp;ModificationPrevention"/>
+        <Class IRI="#Data_Protection"/>
     </DataPropertyDomain>
     <DataPropertyRange>
         <DataProperty IRI="#DataPrivacy"/>
@@ -1164,7 +1542,35 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/ContinuousDev"/>
+        <Datatype abbreviatedIRI="xsd:language"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/ContinuousDev"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/ContinuousMonitoring"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/ContinuousMonitoring"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/ContractualFulfillmentAndInternalStandards"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/CryptographicStandards"/>
+        <Datatype abbreviatedIRI="xsd:language"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/CryptographicStandards"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/DataClassification"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
@@ -1216,6 +1622,86 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/InfraDataEncryption"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraDataEncryption"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraEndpointSecurity"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraFirewallImplementation"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraFirewallImplementation"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkAccessControl"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkMonitoring"/>
+        <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkMonitoring"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraNetworkSegmentation"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <Datatype abbreviatedIRI="xsd:long"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraSecConfiguration"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/InvnetoryManagement"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
@@ -1238,6 +1724,10 @@
     <DataPropertyRange>
         <DataProperty IRI="/OpsSecTraining"/>
         <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/PatchManagement"/>
+        <Datatype abbreviatedIRI="xsd:language"/>
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="/ProactiveChangeAndSecurityIntegration"/>
@@ -1296,6 +1786,22 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/SerivceProtocolSec"/>
+        <Datatype abbreviatedIRI="xsd:long"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/SerivceProtocolSec"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/ServiceKeyManagement"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/StackHardening"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/StakeholderEngagementInProjects"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
@@ -1304,11 +1810,27 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/ThreatHunting"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/TotalScore"/>
         <Datatype abbreviatedIRI="xsd:long"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/TransmissionSec"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/UnifiedSecManagement"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/VulnerabilityAssessment"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/VulnerabilityRemediation"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
@@ -1328,7 +1850,39 @@
         <Datatype abbreviatedIRI="xsd:token"/>
     </DataPropertyRange>
     <DataPropertyRange>
+        <DataProperty IRI="/ContinuousMonitoring&amp;Detection"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="/FormalChangeAuthorization&amp;ContractualSecurity"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/IncidentResponse&amp;Planning"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Datatype abbreviatedIRI="xsd:byte"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Datatype abbreviatedIRI="xsd:long"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/InfraIDS&amp;IPS"/>
+        <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/Mitigation&amp;RemediationStrategies"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
@@ -1346,6 +1900,14 @@
     <DataPropertyRange>
         <DataProperty IRI="/SecureStorageAndRemoteManagement:"/>
         <Datatype abbreviatedIRI="xsd:token"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/UnauthorizedDisclosure&amp;ModificationPrevention"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/UnauthorizedDisclosure&amp;ModificationPrevention"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
