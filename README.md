@@ -2,9 +2,11 @@
 ![Build Status](https://github.com/ASHS21/csonto/workflows/CI/badge.svg)
 # Cybersecurity ontology
 
-Description: None
+Description: This ontology is utilising Secure Controls Framework (SCF) developed by The NIST institution.
+This ontology is taking advantage by calculating the score for each control and try to map each control with the other 
+to make the realisation between the controls and their impacts on each other.
 
-More information can be found at http://obofoundry.org/ontology/csonto
+
 
 ## Versions
 
@@ -12,7 +14,7 @@ More information can be found at http://obofoundry.org/ontology/csonto
 
 The latest version of the ontology can always be found at:
 
-http://purl.obolibrary.org/obo/csonto.owl
+NOT RELEASED YET.
 
 (note this will not show up until the request has been approved by obofoundry.org)
 
