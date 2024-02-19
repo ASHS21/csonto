@@ -94,6 +94,12 @@
     
 
 
+    <!-- http://FYP-ASHS21/csonto/Detetct -->
+
+    <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto/Detetct"/>
+    
+
+
     <!-- http://FYP-ASHS21/csonto/IdentifyPotentialLikelihood -->
 
     <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto/IdentifyPotentialLikelihood"/>
@@ -103,6 +109,12 @@
     <!-- http://FYP-ASHS21/csonto/MaintainRiskDocuements -->
 
     <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto/MaintainRiskDocuements"/>
+    
+
+
+    <!-- http://FYP-ASHS21/csonto/Map -->
+
+    <owl:ObjectProperty rdf:about="http://FYP-ASHS21/csonto/Map"/>
     
 
 
@@ -6267,6 +6279,7 @@ Mechanisms exist to dispose of system components using organization-defined tech
 
     <owl:NamedIndividual rdf:about="http://FYP-ASHS21/csonto/OPS-DCH-14.3-DataAccessMapping">
         <rdf:type rdf:resource="http://FYP-ASHS21/csonto/Security_Operations_Policies"/>
+        <cson:Map rdf:resource="http://FYP-ASHS21/csonto/AST-02.8-DataActionMapping"/>
         <Status>Active</Status>
         <cson:HasWeight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</cson:HasWeight>
         <rdfs:comment>Mechanisms exist to develop a data-specific Access Control List (ACL) or Data Information Sharing Agreement (DISA) to determine the personnel with whom sensitive/regulated data is shared.</rdfs:comment>
@@ -9627,6 +9640,7 @@ Mechanisms exist to dispose of system components using organization-defined tech
 
     <owl:NamedIndividual rdf:about="http://FYP-ASHS21/csonto/OPS-NET-08-NetworkIntrusionDetection-PreventionSystems-NIDS-NIPS-">
         <rdf:type rdf:resource="http://FYP-ASHS21/csonto/Security_Operations_Policies"/>
+        <cson:Detetct rdf:resource="http://FYP-ASHS21/csonto/AST-02.5-NetworkAccessControl-NAC-"/>
         <Status>Active</Status>
         <cson:HasWeight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</cson:HasWeight>
         <rdfs:comment>Mechanisms exist to employ Network Intrusion Detection / Prevention Systems (NIDS/NIPS) to detect and/or prevent intrusions into the network. </rdfs:comment>
@@ -9649,6 +9663,7 @@ Mechanisms exist to dispose of system components using organization-defined tech
 
     <owl:NamedIndividual rdf:about="http://FYP-ASHS21/csonto/OPS-NET-08.2-WirelessIntrusionDetection-PreventionSystems-WIDS-WIPS-">
         <rdf:type rdf:resource="http://FYP-ASHS21/csonto/Security_Operations_Policies"/>
+        <cson:Detetct rdf:resource="http://FYP-ASHS21/csonto/AST-02.5-NetworkAccessControl-NAC-"/>
         <Status>Active</Status>
         <cson:HasWeight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</cson:HasWeight>
         <rdfs:comment>Mechanisms exist to monitor wireless network segments to implement Wireless Intrusion Detection / Prevention Systems (WIDS/WIPS) technologies.</rdfs:comment>
