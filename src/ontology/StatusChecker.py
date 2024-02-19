@@ -30,6 +30,6 @@ def update_has_weight_for_policies():
 update_has_weight_for_policies()
 
 # Save the updated ontology
-onto.save(file="path_to_your_updated_ontology.owl")
+onto.save(file="csonto/target/csonto/src/ontology/csonto-edit.rdf")
 
 print("Status is checked and updated successfully!")
