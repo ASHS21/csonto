@@ -2,7 +2,7 @@
 from owlready2 import *
 
 # Loading the predefined ontology
-onto = get_ontology('/Users/alisami/Desktop/csonto-edit.rdf').load()
+onto = get_ontology('csonto-edit.rdf').load()
 
 # Define the RiskManagement class with appropriate data properties
 with onto:
@@ -87,6 +87,40 @@ with onto:
         domain = [VulnerabilityList]
         range = [PatchList]
 
+
+    # Define or ensure the AssetManagement class exists
+    class AssetManagement(Thing):
+        pass
+    
+    # Define AssetsList as a subclass of AssetManagement
+    class AssetsList(onto.Asset_Management):
+        pass
+    
+    # Define data properties for AssetsList
+    class name(DataProperty):
+        range = [str]
+        domain = [AssetsList]
+    
+    class ID(DataProperty):
+        range = [str]
+        domain = [AssetsList]
+    
+    class lastKnownLocation(DataProperty):
+        range = [str]
+        domain = [AssetsList]
+    
+    class typeOfAsset(DataProperty):
+        range = [str]
+        domain = [AssetsList]
+    
+    class originalPlace(DataProperty):
+        range = [str]
+        domain = [AssetsList]
+
+print("AssetsList class and its properties added successfully under AssetManagement.")
+
+
+
 #with onto:
 #    class Status(DataProperty):
 #       range = [str]
@@ -106,7 +140,7 @@ with onto:
             #individual.Status.append("Active")  # Set a default status value
 
 # Save the modified ontology to a file
-onto.save(file="/Users/alisami/Desktop/csonto-edit.rdf")
+onto.save(file="csonto-edit.rdf")
 
 # Print a success message
 #print("Successfully added/updated the 'status' property for all individuals in classes containing '_Policies'.")
