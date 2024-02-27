@@ -1351,14 +1351,6 @@
     
 
 
-    <!-- http://FYP-ASHS21/csonto#AssetManagement -->
-
-    <owl:Class rdf:about="http://FYP-ASHS21/csonto#AssetManagement">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </owl:Class>
-    
-
-
     <!-- http://FYP-ASHS21/csonto#Asset_Management -->
 
     <owl:Class rdf:about="http://FYP-ASHS21/csonto#Asset_Management">
