@@ -70,43 +70,57 @@ def extract_policy_data(onto_path):
 
 def app():
     st.title('Policy Dashboard')
-    onto_path = "/Users/alisami/Desktop/app/csonto-edit.rdf"
-
-    if 'weight_before' not in st.session_state:
-        # Only calculate once per session unless manually refreshed
-        st.session_state['weight_before'], _ = calculate_and_update_weights(onto_path)
-
-    weight_before = st.session_state['weight_before']
+    onto_path = "/workspaces/csonto/dashboards/csonto-edit.rdf"
     
-    df = extract_policy_data(onto_path)
+    # Calculate initial total weight across all classes only once per session
+    if 'weight_before' not in st.session_state:
+        st.session_state['weight_before'], _ = calculate_and_update_weights(onto_path)
+        st.session_state['weight_after'] = st.session_state['weight_before']  # Initialize weight_after with weight_before
+    
+    # Display the initial total weight
+    st.metric(label="Initial Total Weight Across All Classes", value=st.session_state['weight_before'])
 
+    # Button to recalculate weights without changing the initial weight_before
+    if st.button('Recalculate Weights'):
+        # Recalculate and update weight_after without changing weight_before
+        _, st.session_state['weight_after'] = calculate_and_update_weights(onto_path)
+        st.metric(label="Total Weight Across All Classes After Changes", value=st.session_state['weight_after'])
+        
+        # Calculate and display the percentage change
+        if st.session_state['weight_before'] > 0:  # Avoid division by zero
+            percentage_change = (st.session_state['weight_after'] / st.session_state['weight_before']) * 100
+            st.metric(label="Percentage of Initial Total Weight", value=f"{percentage_change:.2f}%")
+        else:
+            st.error("Initial total weight is zero, cannot calculate percentage.")
+
+    df = extract_policy_data(onto_path)
 
     # Visualization 1: Policy Counts by Status
     status_counts = df['Status'].value_counts().reset_index()
     status_counts.columns = ['Status', 'Counts']
     chart1 = alt.Chart(status_counts).mark_bar().encode(
-        x=alt.X('Status', sort=None),
+        x='Status',
         y='Counts',
         color='Status:N',
         tooltip=['Status', 'Counts']
     ).properties(title='Policy Counts by Status')
     st.altair_chart(chart1, use_container_width=True)
 
-    if weight_before > 0:
-        # Calculate class percentages based on the total weight before
+    # Visualization 2: Doughnut Chart for Class Percentages
+    if st.session_state['weight_before'] > 0:
         class_scores = df.groupby('Class')['Weight'].sum()
         class_percentages_df = pd.DataFrame({
             'Class': class_scores.index,
-            'Percentage': (class_scores / weight_before * 100)
+            'Percentage': (class_scores / st.session_state['weight_before'] * 100)
         })
 
         doughnut_chart = alt.Chart(class_percentages_df).mark_arc(innerRadius=100).encode(
-            theta=alt.Theta(field="Percentage", type="quantitative"),
-            color=alt.Color(field="Class", type="nominal"),
-            tooltip=[alt.Tooltip(field="Class", type="nominal"), alt.Tooltip(field="Percentage", type="quantitative", format=".2f")]
+            theta='Percentage:Q',
+            color='Class:N',
+            tooltip=['Class:N', alt.Tooltip('Percentage:Q', format='.2f')]
         ).properties(
             title='Percentage of Total Score by Class',
-            width=400,  # Adjust width and height as needed
+            width=400,
             height=400
         )
         

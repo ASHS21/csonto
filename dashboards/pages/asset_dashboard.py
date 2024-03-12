@@ -26,7 +26,7 @@ def geocode_location(location, attempt=1, max_attempts=3):
         return None, None
     
 def load_assets_data():
-    onto_path = "/Users/alisami/Desktop/app/csonto-edit.rdf"  # Adjust path as needed
+    onto_path = "/workspaces/csonto/dashboards/csonto-edit.rdf"  # Adjust path as needed
     onto = get_ontology(onto_path).load()
     AssetsList = onto.search_one(iri="http://FYP-ASHS21/csonto#AssetsList")
 

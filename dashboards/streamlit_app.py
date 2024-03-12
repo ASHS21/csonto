@@ -20,6 +20,7 @@ def main():
         "Home": page_home,
         "Score Dashboard": "score_dashboard",
         "Asset Dashboard": "asset_dashboard",
+        "Vulnerabilities Dashboard": "vuln_dashboard",
     }
 
     # Sidebar selection
