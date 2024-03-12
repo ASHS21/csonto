@@ -29,7 +29,7 @@ import uuid
 #asset_management_df = pd.DataFrame(data)
 
 # Load the ontology
-onto = get_ontology("csonto-edit.rdf").load()
+onto = get_ontology("/workspaces/csonto/dashboards/csonto-edit.rdf").load()
 
 # Access the AssetsList class using the provided IRI
 #AssetsList = onto.search_one(iri="http://FYP-ASHS21/csonto#AssetsList")
@@ -75,7 +75,48 @@ def create_risk_management_cases(n_instances):
         new_case.RiskList.append(f"Risk_{random.randint(1, 10)}")
         new_case.RiskSolutions.append(f"Solution_{random.randint(1, 3)}")
 
+
+
+def create_mock_data(num_vulnerabilities=100, num_patches=35):
+    # Create Vulnerability instances
+    for i in range(1, num_vulnerabilities + 1):
+        vulnerability = onto.VulnerabilityList()  # Instantiate a new VulnerabilityList object
+        
+        # Since properties are not functional, use list assignment or append
+        vulnerability.vulnerabilityDescription = [f"Description of vulnerability {i}"]
+        vulnerability.vulnerabilityEffects = [f"Effects of vulnerability {i}"]
+        vulnerability.vulnerabilityID = [f"VULN{i:03d}"]
+        vulnerability.vulnerabilityName = [f"Vulnerability_{i}"]
+
+    # Create Patch instances
+    for i in range(1, num_patches + 1):
+        patch = onto.PatchList()  # Instantiate a new PatchList object
+        
+        # Since properties are not functional, use list assignment or append
+        patch.patchID = [f"PATCH{i:03d}"]
+        patch.patchName = [f"Patch_{i}"]
+        patch.patchReleaseDate = [f"2024-03-{i:02d}"]
+
+    # Randomly link patches to vulnerabilities
+    all_vulnerabilities = list(onto.VulnerabilityList.instances())
+    all_patches = list(onto.PatchList.instances())
+
+    for patch in all_patches:
+        linked_vulnerabilities = random.sample(all_vulnerabilities, k=random.randint(1, 5))
+        for vulnerability in linked_vulnerabilities:
+            # Use append() for non-functional object properties
+            if not hasattr(patch, 'ProvidePatch'):
+                patch.ProvidePatch = [vulnerability]
+            else:
+                patch.ProvidePatch.append(vulnerability)
+            
+            if not hasattr(vulnerability, 'hasPatch'):
+                vulnerability.hasPatch = [patch]
+            else:
+                vulnerability.hasPatch.append(patch)
+
+
+create_mock_data()
 # Call the function to create mock
-create_risk_management_cases(10)
 # Save the updated ontology
-onto.save(file="csonto-edit.rdf")
+onto.save(file="/workspaces/csonto/dashboards/csonto-edit.rdf")
