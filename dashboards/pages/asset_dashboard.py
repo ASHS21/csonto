@@ -15,6 +15,7 @@ geolocator = Nominatim(user_agent="streamlit-app")
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
 # Function to geocode location names into latitude and longitude
+@st.cache_resource
 def geocode_location(location, attempt=1, max_attempts=3):
     try:
         location_obj = geolocator.geocode(location, timeout=10)
@@ -25,8 +26,9 @@ def geocode_location(location, attempt=1, max_attempts=3):
         st.error(f"Geocoding error for {location}: {e}")
         return None, None
     
+@st.cache(allow_output_mutation=True)
 def load_assets_data():
-    onto_path = "/workspaces/csonto/dashboards/csonto-edit.rdf"  # Adjust path as needed
+    onto_path = "/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/csonto-edit.rdf" 
     onto = get_ontology(onto_path).load()
     AssetsList = onto.search_one(iri="http://FYP-ASHS21/csonto#AssetsList")
 
@@ -96,67 +98,95 @@ def generate_asset_type_distribution(df, unique_key):
 
 
 # Main function to render the Streamlit app
-def main():
+def app():
     st.title("Assets Location Map")
+    
+    # Initialize session state for search if not already done
+    if 'search_performed' not in st.session_state:
+        st.session_state.search_performed = False
+    
+    # Add a search bar and get the input from the user
+    search_id = st.text_input("Enter Asset ID to search", "")
+    
+    # Load assets data from the ontology
     assets_df = load_assets_data()
-    print(assets_df.columns)
-    if not assets_df.empty:
-        # Generate pairs of locations for the LineLayer
-        line_data = []
-        for _, group in assets_df.groupby('AssetID'):
-            if group.shape[0] > 1:  # Ensure there are at least two points (original and last known location)
-                sorted_group = group.sort_values(by='LocationType', ascending=False)  # Assuming 'LastKnownLocation' comes before 'OriginalPlace'
-                line_record = {
-                    'coordinates': [
-                        [sorted_group.iloc[0]['Lon'], sorted_group.iloc[0]['Lat']],
-                        [sorted_group.iloc[1]['Lon'], sorted_group.iloc[1]['Lat']]
-                    ],
-                    'color': sorted_group.iloc[0]['Color']  # Use the color of the first record
-                }
-                line_data.append(line_record)
-
-        # Creating ScatterplotLayer for assets
-        scatterplot_layers = pdk.Layer(
-            "ScatterplotLayer",
-            assets_df,
-            get_position=['Lon', 'Lat'],
-            get_color='Color',
-            get_radius=100,
-            pickable=True,
-            tooltip={"html": "{LocationType}<br><b>{Name}</b><br>Type: {TypeOfAsset}<br>Asset ID: {AssetID}"},
-        )
-
-        # Creating LineLayer for asset movements
-        line_layer = pdk.Layer(
-            "LineLayer",
-            line_data,
-            get_source_position='coordinates[0]',
-            get_target_position='coordinates[1]',
-            get_color='color',
-            get_width=5,
-            pickable=True,
-            tooltip="Movement path"
-        )
-
-        view_state = pdk.ViewState(
-            latitude=assets_df['Lat'].mean(),
-            longitude=assets_df['Lon'].mean(),
-            zoom=2,
-            pitch=0,
-        )
-
-        st.pydeck_chart(pdk.Deck(layers=[scatterplot_layers, line_layer], initial_view_state=view_state))
-        # Visualizing Number of Assets in Last Known Locations and Original Places
-        # Assuming assets_df is loaded and includes 'City' and 'TypeOfAsset' columns
-        generate_location_bar_chart(assets_df, "Number of Assets by City")
-        generate_asset_type_distribution(assets_df, 'city_dist')
-
+    
+    # "Search" button
+    if st.button("Search"):
+        st.session_state.search_performed = True
+    
+    # If the search ID is provided and the "Search" button has been clicked
+    if search_id and st.session_state.search_performed:
+        filtered_df = assets_df[assets_df['AssetID'] == search_id]
+        if not filtered_df.empty:
+            # Display the search results
+            st.write(f"Search results for Asset ID: {search_id}")
+            st.dataframe(filtered_df)
+        else:
+            st.warning(f"No assets found with ID: {search_id}")
         
+        # "Reset Search" button to clear the search and refresh the app
+        if st.button("Reset Search"):
+            st.session_state.search_performed = False
+            st.experimental_rerun()
+    
+    # If no search has been performed or after resetting the search, show default view
+    if not st.session_state.search_performed:
+        if not assets_df.empty:
+            # Generate pairs of locations for the LineLayer
+            line_data = []
+            for _, group in assets_df.groupby('AssetID'):
+                if group.shape[0] > 1:  # Ensure there are at least two points (original and last known location)
+                    sorted_group = group.sort_values(by='LocationType', ascending=False)
+                    line_record = {
+                        'coordinates': [
+                            [sorted_group.iloc[0]['Lon'], sorted_group.iloc[0]['Lat']],
+                            [sorted_group.iloc[1]['Lon'], sorted_group.iloc[1]['Lat']]
+                        ],
+                        'color': sorted_group.iloc[0]['Color']  # Use the color of the first record
+                    }
+                    line_data.append(line_record)
 
+            # Creating ScatterplotLayer for assets
+            scatterplot_layers = pdk.Layer(
+                "ScatterplotLayer",
+                assets_df,
+                get_position=['Lon', 'Lat'],
+                get_color='Color',
+                get_radius=100,
+                pickable=True,
+                tooltip={"html": "{LocationType}<br><b>{Name}</b><br>Type: {TypeOfAsset}<br>Asset ID: {AssetID}"},
+            )
 
+            # Creating LineLayer for asset movements
+            line_layer = pdk.Layer(
+                "LineLayer",
+                line_data,
+                get_source_position='coordinates[0]',
+                get_target_position='coordinates[1]',
+                get_color='color',
+                get_width=5,
+                pickable=True,
+                tooltip="Movement path"
+            )
 
-    else:
-        st.warning("No asset data loaded or geocoded successfully.")
+            # Define initial view state for the map
+            view_state = pdk.ViewState(
+                latitude=assets_df['Lat'].mean(),
+                longitude=assets_df['Lon'].mean(),
+                zoom=2,
+                pitch=0,
+            )
+
+            # Render the map with the defined layers
+            st.pydeck_chart(pdk.Deck(layers=[scatterplot_layers, line_layer], initial_view_state=view_state))
+
+            # Visualizing Number of Assets in Last Known Locations and Original Places
+            generate_location_bar_chart(assets_df, "Number of Assets by City")
+            generate_asset_type_distribution(assets_df, 'city_dist')
+        else:
+            st.warning("No asset data loaded or geocoded successfully.")
 
 if __name__ == "__main__":
-    main()
+    app()
+

@@ -5,7 +5,7 @@ import altair as alt
 
 # Load the ontology only once during the app's lifecycle.
 if 'onto' not in st.session_state:
-    onto_path = "/workspaces/csonto/dashboards/csonto-edit.rdf"
+    onto_path = "/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/csonto-edit.rdf"
     st.session_state['onto'] = get_ontology(onto_path).load()
 
 # Function to get data about vulnerabilities and their patch status
