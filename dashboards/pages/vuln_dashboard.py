@@ -1,7 +1,11 @@
+# This script is used to display the vulnerabilities and patches dashboard
+
+# Importing required libraries
 from owlready2 import get_ontology
 import pandas as pd
 import streamlit as st
 import altair as alt
+
 
 # Load the ontology only once during the app's lifecycle.
 if 'onto' not in st.session_state:
@@ -38,31 +42,31 @@ def get_patches_data(onto):
 
     return pd.DataFrame(patches_data)
 
+# Main app function
 def app():
     onto = st.session_state['onto']
-
+    VULN_STATUS = 'Has Patch'
     st.title('Vulnerabilities and Patches Dashboard')
 
     vulnerabilities_df = get_vulnerabilities_and_patches(onto)
-    patches_df = get_patches_data(onto)  # Get patches data
-
+    
     # Display overview of vulnerabilities
     st.header("Vulnerabilities Overview")
     st.dataframe(vulnerabilities_df)
 
     # Visualization: Count of vulnerabilities by patch status
     st.header("Vulnerabilities by Patch Status")
-    chart_data = vulnerabilities_df['Has Patch'].value_counts().reset_index()
-    chart_data.columns = ['Has Patch', 'Count']
-    c = alt.Chart(chart_data).mark_bar().encode(x='Has Patch', y='Count', color='Has Patch', tooltip=['Has Patch', 'Count']).properties(width=600, height=400)
+    chart_data = vulnerabilities_df[VULN_STATUS].value_counts().reset_index()
+    chart_data.columns = [VULN_STATUS, 'Count']
+    c = alt.Chart(chart_data).mark_bar().encode(x=VULN_STATUS, y='Count', color=VULN_STATUS, tooltip=[VULN_STATUS, 'Count']).properties(width=600, height=400)
     st.altair_chart(c, use_container_width=True)
 
     # Display lists of vulnerabilities with and without patches
     st.header("Detailed Lists")
     st.subheader("Vulnerabilities with Patches")
-    st.dataframe(vulnerabilities_df[vulnerabilities_df['Has Patch'] == "Yes"])
+    st.dataframe(vulnerabilities_df[vulnerabilities_df[VULN_STATUS] == "Yes"])
     st.subheader("Vulnerabilities without Patches")
-    st.dataframe(vulnerabilities_df[vulnerabilities_df['Has Patch'] == "No"])
+    st.dataframe(vulnerabilities_df[vulnerabilities_df[VULN_STATUS] == "No"])
 
 if __name__ == "__main__":
     app()

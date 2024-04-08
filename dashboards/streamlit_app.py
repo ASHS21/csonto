@@ -1,8 +1,11 @@
+# The script below is the main script for the Streamlit app that displays the different dashboards.
+
+# Import the required libraries
 import streamlit as st
 
 # Function to render the home page
 def page_home():
-    st.title("Welcome to Our Policy and Asset Management App")
+    st.title("Welcome to Our Cybersecurity Dashboard")
     st.write("Navigate using the sidebar to access different dashboards.")
 
 # Dynamically import pages to avoid circular imports and reduce startup time
@@ -20,7 +23,7 @@ def main():
         "Home": page_home,
         "Score Dashboard": "score_dashboard",
         "Asset Dashboard": "asset_dashboard",
-        "Vulnerabilities Dashboard": "vuln_dashboard",
+        "Vulnerabilities Dashboard": "vulnerability_dashboard",
     }
 
     # Sidebar selection

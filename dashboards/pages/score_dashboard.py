@@ -1,3 +1,9 @@
+# This script is showing the score dashboard, which is used to display the knowledge graph visualization and other related information.
+# The script uses the ontology to extract vulnerabilities, risks, and policies data and insert it into Neo4j.
+# It also calculates and updates the weights of the policies based on the risk adjustments.
+# The script shows the different classes of cybersecurity organizational policies and their status.
+
+# Importing required libraries
 from owlready2 import get_ontology
 import pandas as pd
 import streamlit as st
@@ -5,10 +11,11 @@ import altair as alt
 import random
 from neo4j import GraphDatabase
 import json
-from py2neo import Graph
 from pyvis.network import Network
+import streamlit.components.v1 as components
 
 
+# Neo4j connection class
 class Neo4jConnection:
     def __init__(self, config_path):
         self.config = self.load_config(config_path)
@@ -25,6 +32,39 @@ class Neo4jConnection:
         if self.driver:
             self.driver.close()
 
+# Function to calculate and update the weights of the policies
+def calculate_and_update_weights(onto_path, risk_adjustments=None):
+    onto = get_ontology(onto_path).load()
+
+    classes_iris = [
+        "http://FYP-ASHS21/csonto/Asset_Management_Policies",
+        "http://FYP-ASHS21/csonto/Assurance_Policies",
+        "http://FYP-ASHS21/csonto/Change_Management_Policies",
+        "http://FYP-ASHS21/csonto/Emerging_Technologies_Policies",
+        "http://FYP-ASHS21/csonto/Governance_Policies",
+        "http://FYP-ASHS21/csonto/Security_Operations_Policies"
+    ]
+
+    total_weight_before, total_weight_after = 0, 0
+
+    for class_iri in classes_iris:
+        policy_class = onto.search_one(iri=class_iri)
+        if policy_class:
+            for instance in policy_class.instances():
+                weight = getattr(instance, "HasWeight", [0])[0]
+                total_weight_before += weight
+
+                if risk_adjustments and instance.name in risk_adjustments:
+                    adjusted_weight = adjust_weight_based_on_risk(weight, risk_adjustments[instance.name])
+                else:
+                    adjusted_weight = assign_new_status_and_adjust_weight(instance, weight)
+
+                instance.HasWeight = [adjusted_weight]
+                total_weight_after += adjusted_weight
+
+    return total_weight_before, total_weight_after
+
+# Function to get the unpatched vulnerabilities from the ontology
 def extract_unpatched_vulnerabilities(onto_path):
     # Get all vulnerabilities
     onto = get_ontology(onto_path).load()
@@ -60,7 +100,7 @@ def extract_unpatched_vulnerabilities(onto_path):
 
     return unpatched_vulnerabilities
 
-
+# Function to extract critical accepted risks from the ontology
 def extract_critical_accepted_risks(onto_path):
     # Get all risks
     onto = get_ontology(onto_path).load()
@@ -83,15 +123,36 @@ def extract_critical_accepted_risks(onto_path):
 
     return critical_risks
 
+# Function to extract non-compliant policies from the ontology
+def extract_non_compliant_policies(onto_path):
+    onto = get_ontology(onto_path).load()
+    
+    non_compliant_policies = []
+    
+    classes_containing_policies = [cls for cls in onto.classes() if '_Policies' in cls.name]
+
+    
+    for cls in classes_containing_policies:
+        for individual in cls.instances():
+            if individual.Status and individual.Status[0] != "Implemented":
+                non_compliant_policies.append({
+                    'PolicyID': individual.name,
+                    'HasWeight': individual.HasWeight[0] if individual.HasWeight else 0,
+                    'Status': individual.Status[0]
+                })
+    
+    return non_compliant_policies
+
+# Function to insert data into Neo4j
 def insert_data_into_neo4j(neo4j_conn, risks, vulnerabilities, policies):
     with neo4j_conn.driver.session() as session:
         # Insert vulnerabilities into Neo4j
-        for vuln in vulnerabilities:
+        for vuln in vulnerabilities[:5]:
             session.run("""
                 MERGE (v:Vulnerability {id: $id})
                 ON CREATE SET v.name = $name, v.description = $description, v.effects = $effects
                 MERGE (s:Score {value: 'Low'})
-                MERGE (v)-[:CAUSED_BY]->(s)
+                MERGE (s)-[:CAUSED_BY]->(v)
                 """, 
                 id=vuln['vulnerabilityID'], 
                 name=vuln['vulnerabilityName'], 
@@ -99,12 +160,12 @@ def insert_data_into_neo4j(neo4j_conn, risks, vulnerabilities, policies):
                 effects=vuln['vulnerabilityEffects'])
 
         # Insert risks into Neo4j
-        for risk in risks:
+        for risk in risks[:5]:
             session.run("""
                 MERGE (r:Risk {id: $id})
                 ON CREATE SET r.name = $name, r.effects = $effects, r.decisions = $decisions
                 MERGE (s:Score {value: 'Low'})
-                MERGE (r)-[:CAUSED_BY]->(s)
+                MERGE (s)-[:CAUSED_BY]->(r)
                 """, 
                 id=risk['CaseID'], 
                 name=risk['CaseName'], 
@@ -112,54 +173,30 @@ def insert_data_into_neo4j(neo4j_conn, risks, vulnerabilities, policies):
                 decisions=risk['RiskDecisions'])
 
         # Insert policies into Neo4j
-        # Now, insert the policies
-        for policy in policies:
+        for policy in policies[:5]:
+        # Check if 'HasWeight' is 0 and set label to 'PolicyID' if true, otherwise, use the 'HasWeight'
+           
             session.run("""
-                MERGE (p:Policy {id: $id})
-                ON CREATE SET p.hasWeight = $hasWeight, p.status = $status
-                MERGE (s:Score {value: 'Low'})
-                MERGE (p)-[:CAUSED_BY]->(s)
-                """, 
-                id=policy['PolicyID'], 
-                hasWeight=policy['HasWeight'], 
-                status=policy['Status'])
+             MERGE (p:Policy {id: $id})
+            ON CREATE SET p.id = $id, p.status = $status
+            MERGE (s:Score {value: 'Low'})
+            MERGE (s)-[:CAUSED_BY]->(p)
+            """, 
+            id=policy['PolicyID'], 
+            status=policy['Status'])
 
-def calculate_and_update_weights(onto_path, risk_adjustments=None):
-    onto = get_ontology(onto_path).load()
+# Function to adjust the weight based on the risk
+def adjust_weight_based_on_risk(weight, adjustment_factor):
+    return weight * adjustment_factor
 
-    classes_iris = [
-        "http://FYP-ASHS21/csonto/Asset_Management_Policies",
-        "http://FYP-ASHS21/csonto/Assurance_Policies",
-        "http://FYP-ASHS21/csonto/Change_Management_Policies",
-        "http://FYP-ASHS21/csonto/Emerging_Technologies_Policies",
-        "http://FYP-ASHS21/csonto/Governance_Policies",
-        "http://FYP-ASHS21/csonto/Security_Operations_Policies"
-    ]
+# Function to assign a new status and adjust the weight
+def assign_new_status_and_adjust_weight(instance, weight):
+    new_status = random.choice(["Implemented", "Violated", "Bypassed", "Ignored"])
+    instance.Status = [new_status]
+    adjusted_weight = weight if new_status == "Implemented" else 0
+    return adjusted_weight
 
-    total_weight_before, total_weight_after = 0, 0
-
-    for class_iri in classes_iris:
-        policy_class = onto.search_one(iri=class_iri)
-        if policy_class:
-            for instance in policy_class.instances():
-                weight = getattr(instance, "HasWeight", [0])[0]
-                total_weight_before += weight
-
-                if risk_adjustments and instance.name in risk_adjustments:
-                    # Adjust weight based on risk consequence
-                    adjustment_factor = risk_adjustments[instance.name]
-                    adjusted_weight = weight * adjustment_factor
-                else:
-                    # Randomly assign a new status if no risk adjustment is specified
-                    new_status = random.choice(["Implemented", "Violated", "Bypassed", "Ignored"])
-                    instance.Status = [new_status]
-                    adjusted_weight = weight if new_status == "Implemented" else 0
-
-                instance.HasWeight = [adjusted_weight]
-                total_weight_after += adjusted_weight
-
-    return total_weight_before, total_weight_after
-
+# Function to extract risk information from the ontology
 def extract_risk_information(onto_path):
     onto = get_ontology(onto_path).load()
     
@@ -182,6 +219,7 @@ def extract_risk_information(onto_path):
 
     return pd.DataFrame(risks_data)
 
+# Function to extract policy data from the ontology
 def extract_policy_data(onto_path):
     onto = get_ontology(onto_path).load()
 
@@ -208,6 +246,7 @@ def extract_policy_data(onto_path):
                 
     return pd.DataFrame(policies_data)
 
+# Function to apply consequence adjustments to the risks
 def apply_consequence_adjustments(df_risks):
     adjustments = {}
     for _, risk in df_risks.iterrows():
@@ -219,58 +258,45 @@ def apply_consequence_adjustments(df_risks):
             adjustments[risk['CaseName']] = 1  # No change
     return adjustments
 
-def extract_non_compliant_policies(onto_path):
-    onto = get_ontology(onto_path).load()
-    
-    non_compliant_policies = []
-    # Assuming 'Asset_Management_Policies' is the root class for all policies you're interested in
-    policy_classes = [
-        "http://FYP-ASHS21/csonto#Asset_Management_Policies",
-        "http://FYP-ASHS21/csonto#Assurance_Policies",
-        "http://FYP-ASHS21/csonto#Change_Management_Policies",
-        "http://FYP-ASHS21/csonto#Emerging_Technologies_Policies",
-        "http://FYP-ASHS21/csonto#Governance_Policies",
-        "http://FYP-ASHS21/csonto#Security_Operations_Policies"
-    ]
+# Function to visualize the graph
+def visualize_graph(neo4j_conn):
+    # Create a new network graph
+    net = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
 
-    for class_iri in policy_classes:
-        policy_class = onto.search_one(iri=class_iri)
-        if policy_class:
-            for policy in policy_class.instances():
-                status = getattr(policy, 'Status', [None])[0]
-                if status in ["Violated", "Ignored", "Bypassed"]:
-                    non_compliant_policies.append({
-                        'PolicyID': policy.name,
-                        'HasWeight': getattr(policy, 'HasWeight', [None])[0],
-                        'Status': status,
-                        # Extract other relevant properties as needed
-                    })
-    
-    return non_compliant_policies
-
-def create_vis_network(neo4j_conn, query):
-    # Create a new PyVis network
-    net = Network(height="100%", width="100%", bgcolor="#222222", font_color="white")
-    
-    # Connect to Neo4j using py2neo's session
+    # Fetch data from Neo4j
     with neo4j_conn.driver.session() as session:
-        # Run the Cypher query
-        results = session.run(query)
+        results = session.run("""
+        MATCH (e)<-[r:CAUSED_BY]-(s:Score {value: 'Low'})
+        WHERE e:Vulnerability OR e:Risk OR e:Policy
+        RETURN e, r, s
+        """)
         
-    # Turn off physics for static graph
-    net.toggle_physics(False)
-    
-    # Generate the HTML and Javascript for rendering
-    try:
-        net.show('graph.html')
-    except Exception as e:
-        print(e)
-    
-    # Return HTML file path for display in Streamlit
-    return 'graph.html'
-    
- 
+        for record in results:
+            e = record['e']
+            s = record['s']
+            # Use the _id attribute or call id(e) and id(s) in the RETURN clause of your Cypher query
+            e_id = str(e._id)
+            s_id = str(s._id)
+            
+            # Add entities to the graph, checking the labels to determine the color
+            if 'Vulnerability' in e.labels:
+                net.add_node(e_id, label=e['name'], color='red')
+            elif 'Risk' in e.labels:
+                net.add_node(e_id, label=e['name'], color='blue')
+            elif 'Policy' in e.labels:
+                net.add_node(e_id, label=e['name'], color='green')
 
+            # Add the Score node to the graph if it doesn't already exist
+            net.add_node(s_id, label=s['value'], color='orange', size=15)
+            
+            # Add a directed edge from entity to Score
+            net.add_edge(e_id, s_id)
+
+    # Generate the network in HTML format
+    net.show('graph.html', notebook=False)
+    return 'graph.html'
+
+# Main function to render the Streamlit app
 def app():
 
     config_path = '/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/pages/config.json'  
@@ -279,12 +305,20 @@ def app():
     conn = Neo4jConnection(config_path)
     st.title('Policy and Risk Management Dashboard')
     onto_path = "/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/csonto-edit.rdf"
+    html_file_path = visualize_graph(conn)
+
+    st.title('Knowledge Graph Visualization')
+    html_file = open(html_file_path, 'r', encoding='utf-8')
+    source_code = html_file.read() 
+    components.html(source_code, width=800, height=600)
     
     # Extract information
     vulnerabilities_without_patches = extract_unpatched_vulnerabilities(onto_path)
     critical_accepted_risks = extract_critical_accepted_risks(onto_path)
     extracted_policies = extract_non_compliant_policies(onto_path)
-
+    df_policies = extract_policy_data(onto_path)
+    df_risks = extract_risk_information(onto_path)
+    
     # Display extracted information in the app for verification
     st.subheader("Unpatched Vulnerabilities")
     st.write(vulnerabilities_without_patches)
@@ -292,20 +326,19 @@ def app():
     st.subheader("Critical Accepted Risks")
     st.write(critical_accepted_risks)
 
-    
-   
-
     # If a button is clicked, insert the data into Neo4j
     if st.button('Update Neo4j Graph'):
         insert_data_into_neo4j(conn, critical_accepted_risks, vulnerabilities_without_patches, extracted_policies)
         st.success("Neo4j Graph updated with new vulnerabilities, risks, and policies!")
 
+    # Calculate and update the weights of the policies
     if 'weight_before' not in st.session_state:
         st.session_state['weight_before'], _ = calculate_and_update_weights(onto_path)
         st.session_state['weight_after'] = st.session_state['weight_before']
 
     st.metric(label="Initial Total Weight Across All Classes", value=st.session_state['weight_before'])
 
+    # Recalculate the weights if the button is clicked
     if st.button('Recalculate Weights'):
         _, st.session_state['weight_after'] = calculate_and_update_weights(onto_path)
         st.metric(label="Total Weight Across All Classes After Changes", value=st.session_state['weight_after'])
@@ -315,9 +348,8 @@ def app():
         else:
             st.error("Initial total weight is zero, cannot calculate percentage.")
 
-    df_policies = extract_policy_data(onto_path)
-    df_risks = extract_risk_information(onto_path)
-
+    
+    # Display the extracted policies and risks
     status_counts = df_policies['Status'].value_counts().reset_index()
     status_counts.columns = ['Status', 'Counts']
     chart1 = alt.Chart(status_counts).mark_bar().encode(
@@ -328,6 +360,7 @@ def app():
     ).properties(title='Policy Counts by Status')
     st.altair_chart(chart1, use_container_width=True)
 
+    # Display the extracted risks
     if st.session_state['weight_before'] > 0:
         class_scores = df_policies.groupby('Class')['Weight'].sum()
         class_percentages_df = pd.DataFrame({
@@ -346,9 +379,11 @@ def app():
         st.altair_chart(doughnut_chart, use_container_width=True)
         risk_adjustments = apply_consequence_adjustments(df_risks)
 
+    
     # Toggle to show effects of risk consequences
     show_effects = st.checkbox("Show Effects of Risk Consequences on Score")
 
+    # Display the effects of risk consequences
     if show_effects:
         _, st.session_state['weight_after'] = calculate_and_update_weights(onto_path, risk_adjustments)
         st.metric(label="Adjusted Total Weight After Risk Consequences", value=st.session_state['weight_after'])
@@ -358,6 +393,7 @@ def app():
     else:
         st.metric(label="Total Weight (Unadjusted)", value=st.session_state['weight_before'])
    
+    # Close the connection
     conn.close()
 if __name__ == "__main__":
     app()
