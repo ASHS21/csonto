@@ -1,7 +1,7 @@
 # Basic ODK workflow
 name: Docs
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,11 +17,9 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
-
       - name: Deploy docs
         uses: ASHS21/mkdocs-deploy-gh-pages@master
         # Or use ASHS21/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG_FILE: mkdocs.yaml
-
