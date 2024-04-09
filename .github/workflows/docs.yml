@@ -18,7 +18,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
       - name: Deploy docs
-        uses: ASHS21/csonto/mkdocs-deploy-gh-pages@master
+        uses: ASHS21/csonto/mkdocs-deploy-gh-pages@main
         # Or use ASHS21/csonto/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
