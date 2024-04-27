@@ -1,6 +1,12 @@
 from owlready2 import *
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import pandas as pd
 
-# Load your ontology
+
+sns.set(style="whitegrid")
+
 onto = get_ontology("/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/csonto-edit.rdf").load()
 sync_reasoner_pellet()
 for cls in onto.classes():
@@ -201,11 +207,99 @@ print("Annotation Richness:", calculate_annotation_richness(onto))
 print("Subclass Distribution:", calculate_subclass_distribution(onto))
 print("Property Specificity:", property_specificity(onto))
 
+# Calculated metrics (replace with your actual calculated values)
+class_count = count_classes(onto)
+object_property_count = count_object_properties(onto)
+data_property_count = count_data_properties(onto)
+individual_count = count_individuals(onto)
+axiom_count = count_axioms(onto)
+max_depth = calculate_max_depth(onto)
+leaf_class_count = count_leaf_classes(onto)
+average_depth = calculate_average_depth(onto)
+maximum_width = calculate_maximum_width(onto)
+tangledness = calculate_tangledness(onto)
+leaf_class_ratio = calculate_ratio_of_leaf_classes(onto)
+instance_to_class_ratio = calculate_instance_to_class_ratio(onto)
+annotation_richness = calculate_annotation_richness(onto)
+subclass_distribution = calculate_subclass_distribution(onto)
+property_specificity = property_specificity(onto)
 
+counts = [count_classes(onto), count_object_properties(onto), count_data_properties(onto), individual_count]
+hierarchical_metrics = [max_depth, average_depth, maximum_width]
+complexity_metrics = [tangledness, leaf_class_ratio]
+richness_metrics = [instance_to_class_ratio, annotation_richness]
 
+# Titles and labels for the charts
+titles = ['Ontology Element Counts', 'Hierarchical Metrics', 'Class Complexity Metrics', 'Ontology Richness Metrics']
+x_labels = [
+    ['Classes', 'Object Properties', 'Data Properties', 'Individuals'],
+    ['Max Depth', 'Average Depth', 'Max Width'],
+    ['Tangledness', 'Leaf Class Ratio'],
+    ['Instance to Class Ratio', 'Annotation Richness']
+]
+y_label = 'Value'
 
+# Choose a nice color palette
+colors = sns.color_palette('pastel')
 
+# First figure with top plots
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.bar(x_labels[0], counts, color=colors)
+plt.title(titles[0])
+plt.ylabel(y_label)
 
+plt.subplot(1, 2, 2)
+plt.bar(x_labels[1], hierarchical_metrics, color=colors)
+plt.title(titles[1])
+plt.ylabel(y_label)
 
+# Despine the top and right borders
+sns.despine()
 
+plt.tight_layout()
+plt.show()
 
+# Separate figures for the rest of the plots
+for i, metrics in enumerate([complexity_metrics, richness_metrics], start=2):
+    plt.figure(figsize=(6, 6))
+    plt.bar(x_labels[i], metrics, color=colors[:len(metrics)])
+    plt.title(titles[i])
+    plt.ylabel(y_label)
+    sns.despine()
+    plt.tight_layout()
+    plt.show()
+
+# Filter out zero values from subclass distribution and extract class names as strings
+filtered_subclass_distribution = {cls.name: count for cls, count in calculate_subclass_distribution(onto).items() if count > 0}
+
+# Prepare data for the Property Specificity scatter plot
+# Filter out entries where both domain and range specificities are zero and convert property objects to their names
+filtered_property_specificity = {prop.name: (domain, range_) for prop, (domain, range_) in property_specificity.items() if domain > 0 or range_ > 0}
+
+# Plotting Subclass Distribution
+plt.figure(figsize=(10, 8))
+plt.barh(list(filtered_subclass_distribution.keys()), list(filtered_subclass_distribution.values()), color=sns.color_palette("husl", len(filtered_subclass_distribution)))
+plt.xlabel('Number of Subclasses')
+plt.title('Subclass Distribution')
+sns.despine(left=True, bottom=True)  # Remove the top and right spines from plot
+plt.tight_layout()
+plt.show()
+
+# Convert property objects to string names and pair with their specificity values
+properties_with_specificity = [(prop.name, *spec) for prop, spec in property_specificity.items()]
+# Sort properties by domain then range specificity in descending order
+sorted_properties = sorted(properties_with_specificity, key=lambda x: (x[1], x[2]), reverse=True)
+# Print out properties with the highest domain and range specificity
+highest_domain_specificity = sorted_properties[0][1]
+highest_range_specificity = sorted_properties[0][2]
+
+print("Properties with the highest domain specificity:")
+for name, dom_spec, _ in sorted_properties:
+    if dom_spec == highest_domain_specificity:
+        print(f"{name} (Domain Specificity: {dom_spec})")
+
+print("\nProperties with the highest range specificity:")
+for name, _, ran_spec in sorted_properties:
+    if ran_spec == highest_range_specificity:
+        print(f"{name} (Range Specificity: {ran_spec})")

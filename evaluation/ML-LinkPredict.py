@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc, precision_recall_curve, average_precision_score
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import confusion_matrix
+from matplotlib.cm import get_cmap
 import matplotlib.pyplot as plt
 
 # Load the graph data
@@ -126,42 +127,48 @@ roc_auc = auc(fpr, tpr)
 precision_points, recall_points, _ = precision_recall_curve(y_test, probabilities)
 pr_auc = average_precision_score(y_test, probabilities)
 
-fig, ax = plt.subplots(2, 4, figsize=(20, 10))  # 2 rows, 4 columns to fit all metrics and plots in an appropriate layout
+# Define a consistent color scheme
+colors = get_cmap('tab10').colors
+
+# Adjust font size and style
+plt.rcParams.update({'font.size': 12, 'font.family': 'serif'})
+
+fig, ax = plt.subplots(2, 4, figsize=(18, 10))
 
 # Plotting each metric in its respective subplot
 metrics = [accuracy, precision, recall, f1]
 names = ['Accuracy', 'Precision', 'Recall', 'F1 Score']
-colors = ['skyblue', 'salmon', 'lightgreen', 'gold']
 
 for i, metric in enumerate(metrics):
     ax[0, i].bar(names[i], metric, color=colors[i])
     ax[0, i].set_title(names[i])
-    ax[0, i].set_ylim(0, 1)  # Set y-axis limit to scale between 0 and 1
+    ax[0, i].set_ylim(0, 1)
 
 # ROC Curve
-ax[1, 0].plot(fpr, tpr, label=f'ROC curve (area = {roc_auc:.2f})', color='darkorange')
-ax[1, 0].plot([0, 1], [0, 1], linestyle='--', color='navy')
+ax[1, 0].plot(fpr, tpr, label=f'ROC curve (AUC = {roc_auc:.2f})', color=colors[0])
+ax[1, 0].plot([0, 1], [0, 1], linestyle='--', color='gray')
 ax[1, 0].set_xlim([0.0, 1.0])
 ax[1, 0].set_ylim([0.0, 1.05])
 ax[1, 0].set_xlabel('False Positive Rate')
 ax[1, 0].set_ylabel('True Positive Rate')
-ax[1, 0].set_title('Receiver Operating Characteristic')
+ax[1, 0].set_title('ROC Curve')
 ax[1, 0].legend(loc="lower right")
 
 # Precision-Recall Curve
-ax[1, 1].plot(recall_points, precision_points, color='blue', label=f'PR curve (area = {pr_auc:.2f})')
+ax[1, 1].plot(recall_points, precision_points, color=colors[1], label=f'PR curve (AUC = {pr_auc:.2f})')
 ax[1, 1].set_xlabel('Recall')
 ax[1, 1].set_ylabel('Precision')
-ax[1, 1].set_title('Precision-Recall curve')
+ax[1, 1].set_title('Precision-Recall Curve')
 ax[1, 1].legend(loc="lower left")
+ax[1, 1].grid(True)
 
 # Confusion Matrix
-disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-disp.plot(ax=ax[1, 2], cmap=plt.cm.Blues)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Not Positive', 'Positive'])
+disp.plot(ax=ax[1, 2], cmap=plt.cm.Blues, colorbar=False)
 ax[1, 2].set_title('Confusion Matrix')
 
 # Adjust the layout for visibility
-ax[1, 3].axis('off')  # Turn off the 4th subplot in the second row as it's unused
+ax[1, 3].axis('off')
 
 plt.tight_layout()
 plt.show()
