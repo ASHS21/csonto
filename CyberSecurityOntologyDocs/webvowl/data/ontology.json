@@ -1,0 +1,1226 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.5), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "undefined" ],
+    "iri" : "http://FYP-ASHS21/csonto",
+    "comments" : {
+      "undefined" : "This is the cybersecurity ontology, which represents the overall structure of the cybersecurity organisation. It allows it to monitor its current state and find out about issues by tracing it back."
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "0",
+    "type" : "owl:Class"
+  }, {
+    "id" : "8",
+    "type" : "owl:Class"
+  }, {
+    "id" : "10",
+    "type" : "owl:Class"
+  }, {
+    "id" : "22",
+    "type" : "owl:Class"
+  }, {
+    "id" : "3",
+    "type" : "owl:Class"
+  }, {
+    "id" : "13",
+    "type" : "owl:Class"
+  }, {
+    "id" : "29",
+    "type" : "owl:Class"
+  }, {
+    "id" : "35",
+    "type" : "owl:Class"
+  }, {
+    "id" : "39",
+    "type" : "owl:Class"
+  }, {
+    "id" : "2",
+    "type" : "owl:Class"
+  }, {
+    "id" : "36",
+    "type" : "owl:Class"
+  }, {
+    "id" : "54",
+    "type" : "owl:Class"
+  }, {
+    "id" : "6",
+    "type" : "owl:Class"
+  }, {
+    "id" : "23",
+    "type" : "owl:Class"
+  }, {
+    "id" : "59",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "owl:Class"
+  }, {
+    "id" : "56",
+    "type" : "owl:Class"
+  }, {
+    "id" : "18",
+    "type" : "owl:Class"
+  }, {
+    "id" : "58",
+    "type" : "owl:Class"
+  }, {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "92",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "76",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "93",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "66",
+    "type" : "owl:Class"
+  }, {
+    "id" : "69",
+    "type" : "owl:Class"
+  }, {
+    "id" : "43",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "94",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "16",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "95",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "63",
+    "type" : "owl:Class"
+  }, {
+    "id" : "82",
+    "type" : "owl:Class"
+  }, {
+    "id" : "97",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "14",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "19",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "115",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "47",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "57",
+    "type" : "owl:Class"
+  }, {
+    "id" : "84",
+    "type" : "owl:Class"
+  }, {
+    "id" : "41",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "49",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "91",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "4",
+    "type" : "owl:Class"
+  }, {
+    "id" : "28",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "38",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "119",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "7",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "122",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "31",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "123",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "61",
+    "type" : "owl:Class"
+  }, {
+    "id" : "78",
+    "type" : "owl:Class"
+  }, {
+    "id" : "51",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "21",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "121",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "105",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "53",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "45",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "126",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "55",
+    "type" : "owl:Class"
+  }, {
+    "id" : "34",
+    "type" : "owl:Class"
+  }, {
+    "id" : "32",
+    "type" : "owl:Class"
+  }, {
+    "id" : "33",
+    "type" : "owl:Class"
+  }, {
+    "id" : "26",
+    "type" : "rdfs:Datatype"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://FYP-ASHS21/csonto#Threat_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "2", "3", "4" ],
+    "id" : "0",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#RiskManagementCases",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "8",
+    "superClasses" : [ "9" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/TechnologyDevelopement&Acquisition",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "10",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#PatchList",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "22",
+    "superClasses" : [ "23" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Continuous_Monitoring",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "3",
+    "superClasses" : [ "0" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#AssetsList",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "13",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Asset_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "13", "33", "34", "35", "36" ],
+    "id" : "29",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Capacity_And_Performance_PLanning",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "35",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Change_Management_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "39",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#BusinessContinuity_And_DiasterRecovery",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "2",
+    "superClasses" : [ "0" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Configuration_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "36",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Assurance",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "55", "56", "57" ],
+    "id" : "54",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Emerging_Technologies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "58" ],
+    "id" : "6",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Vulnerability_And_Web_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "22", "18" ],
+    "id" : "23",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Thrid-Party-Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "59",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Change_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "59", "61", "39", "9", "10" ],
+    "id" : "11",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Security_Awareness_And_Training",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "56",
+    "superClasses" : [ "54" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#VulnerabilityList",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "18",
+    "superClasses" : [ "23" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Emerging_Technologies_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "58",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Risk_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "8" ],
+    "id" : "9",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#boolean",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "92"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "76"
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#rational",
+    "baseIri" : "http://www.w3.org/2002/07/owl",
+    "id" : "93"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Governance",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "69" ],
+    "id" : "66",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Governance_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "69",
+    "superClasses" : [ "66" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "43"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "94"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "16"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "95"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Security_Operations_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "63",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Embdded_Technologies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "82",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "97"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "14"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "19"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "115"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "47"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Assurance_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "57",
+    "superClasses" : [ "54" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Data_Protection",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "84",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "41"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "49"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "91"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Incident_Response",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "4",
+    "superClasses" : [ "0" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "28"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "38"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "119"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "7"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "122"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "31"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "123"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Secure_Engineering_And_Architecture",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "61",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Infrastructure_And_Identity_And_Access_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "78",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "51"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "21"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "121"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "105"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Security_Operations",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "0", "23", "78", "63", "82", "84" ],
+    "id" : "1",
+    "superClasses" : [ "32" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "53"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "45"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#boolean",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "126"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Compliance",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "55",
+    "superClasses" : [ "54" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Mobile_Device_Management",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "34",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#CyberSecurityScore",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "subClasses" : [ "54", "66", "11", "6", "29", "1" ],
+    "id" : "32"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/Asset_Management_Policies",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "instances" : 0,
+    "id" : "33",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "26"
+  } ],
+  "property" : [ {
+    "id" : "5",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "12",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "15",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "17",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "20",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "25",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "27",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "30",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "37",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "40",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "42",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "44",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "46",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "48",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "50",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "52",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "60",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "62",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "64",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "65",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "67",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "68",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "70",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "71",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "72",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "73",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "74",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "75",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "77",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "79",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "80",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "81",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "83",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "85",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "86",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "87",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "88",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "89",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "90",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "96",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "98",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "99",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "100",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "101",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "102",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "103",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "104",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "106",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "107",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "108",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "109",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "110",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "111",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "112",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "113",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "114",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "116",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "117",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "118",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "120",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "124",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "127",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "128",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "129",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "130",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "131",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "132",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "133",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "134",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "135",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "136",
+    "type" : "owl:someValuesFrom"
+  }, {
+    "id" : "137",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "138",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "139",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "140",
+    "type" : "owl:datatypeProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://FYP-ASHS21/csonto#Safety",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "7",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#typeOfAsset",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "14",
+    "domain" : "13",
+    "attributes" : [ "datatype" ],
+    "id" : "12"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Consequences",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "16",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "15"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#vulnerabilityID",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "19",
+    "domain" : "18",
+    "attributes" : [ "datatype" ],
+    "id" : "17"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#RiskDecisions",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "21",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "20"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#vulnerabilityName",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "26",
+    "domain" : "18",
+    "attributes" : [ "datatype" ],
+    "id" : "25"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Trustworthiness",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "28",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "27"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Transparency",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "31",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "30"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#originalPlace",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "38",
+    "domain" : "13",
+    "attributes" : [ "datatype" ],
+    "id" : "37"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#patchName",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "41",
+    "domain" : "22",
+    "attributes" : [ "datatype" ],
+    "id" : "40"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#CaseID",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "43",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "42"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Resilience",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "45",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "44"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#patchReleaseDate",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "47",
+    "domain" : "22",
+    "attributes" : [ "datatype" ],
+    "id" : "46"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#patchID",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "49",
+    "domain" : "22",
+    "attributes" : [ "datatype" ],
+    "id" : "48"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#RiskEffects",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "51",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "50"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Fairness",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "53",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "52"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#hasPatch",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "22",
+    "domain" : "18",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "60"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "63",
+    "domain" : "1",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "62"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/ProvidePatch",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "18",
+    "domain" : "22",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "64"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "33",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "65"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "58",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "67"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "69",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "68"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "39",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "70"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "63",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "71"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "58",
+    "domain" : "6",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "72"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "57",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "73"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#definePolicy",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "69",
+    "domain" : "66",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "74"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Explainability",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "76",
+    "domain" : "6",
+    "attributes" : [ "datatype" ],
+    "id" : "75"
+  }, {
+    "range" : "23",
+    "domain" : "78",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "77"
+  }, {
+    "range" : "0",
+    "domain" : "78",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "79"
+  }, {
+    "range" : "23",
+    "domain" : "0",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "80"
+  }, {
+    "range" : "78",
+    "domain" : "82",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "81"
+  }, {
+    "range" : "23",
+    "domain" : "84",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "83"
+  }, {
+    "range" : "23",
+    "domain" : "82",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "85"
+  }, {
+    "range" : "0",
+    "domain" : "82",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "86"
+  }, {
+    "range" : "82",
+    "domain" : "84",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "87"
+  }, {
+    "range" : "0",
+    "domain" : "84",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "88"
+  }, {
+    "range" : "78",
+    "domain" : "84",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "89"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#lastKnownLocation",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "91",
+    "domain" : "13",
+    "attributes" : [ "datatype" ],
+    "id" : "90"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#vulnerabilityDescription",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "97",
+    "domain" : "18",
+    "attributes" : [ "datatype" ],
+    "id" : "96"
+  }, {
+    "range" : "69",
+    "domain" : "58",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "98"
+  }, {
+    "range" : "63",
+    "domain" : "39",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "99"
+  }, {
+    "range" : "63",
+    "domain" : "69",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "100"
+  }, {
+    "range" : "63",
+    "domain" : "58",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "101"
+  }, {
+    "range" : "69",
+    "domain" : "39",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "102"
+  }, {
+    "range" : "58",
+    "domain" : "39",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "103"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#Likelihood",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "105",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "104"
+  }, {
+    "range" : "63",
+    "domain" : "57",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "106"
+  }, {
+    "range" : "39",
+    "domain" : "57",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "107"
+  }, {
+    "range" : "63",
+    "domain" : "33",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "108"
+  }, {
+    "range" : "69",
+    "domain" : "57",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "109"
+  }, {
+    "range" : "58",
+    "domain" : "57",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "110"
+  }, {
+    "range" : "39",
+    "domain" : "33",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "111"
+  }, {
+    "range" : "57",
+    "domain" : "33",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "112"
+  }, {
+    "range" : "69",
+    "domain" : "33",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "113"
+  }, {
+    "range" : "58",
+    "domain" : "33",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "114"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#hasPatch",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "22",
+    "domain" : "18",
+    "attributes" : [ "object" ],
+    "id" : "116"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto/ProvidePatch",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "18",
+    "domain" : "22",
+    "attributes" : [ "object" ],
+    "id" : "117"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#name",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "119",
+    "domain" : "13",
+    "attributes" : [ "functional", "datatype" ],
+    "id" : "118"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#RiskList",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "121",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "120"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#RiskSolutions",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "122",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "124"
+  }, {
+    "range" : "3",
+    "domain" : "2",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "127"
+  }, {
+    "range" : "4",
+    "domain" : "2",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "128"
+  }, {
+    "range" : "4",
+    "domain" : "3",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "129"
+  }, {
+    "range" : "36",
+    "domain" : "35",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "130"
+  }, {
+    "range" : "34",
+    "domain" : "35",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "131"
+  }, {
+    "range" : "34",
+    "domain" : "36",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "132"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "39",
+    "domain" : "11",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "133"
+  }, {
+    "range" : "56",
+    "domain" : "55",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "134"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "33",
+    "domain" : "29",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "135"
+  }, {
+    "iri" : "http://purl.obolibrary.org/obo/CSONTO_cf5cef00_b075_4a8d_8d89_8700eb871011",
+    "baseIri" : "http://purl.obolibrary.org/obo",
+    "range" : "57",
+    "domain" : "54",
+    "attributes" : [ "object", "someValues" ],
+    "id" : "136"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#CaseName",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "95",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "137"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#vulnerabilityEffects",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "115",
+    "domain" : "18",
+    "attributes" : [ "datatype" ],
+    "id" : "138"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#AssetID",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "94",
+    "domain" : "13",
+    "attributes" : [ "functional", "datatype" ],
+    "id" : "139"
+  }, {
+    "iri" : "http://FYP-ASHS21/csonto#PolicyAvailability",
+    "baseIri" : "http://FYP-ASHS21/csonto",
+    "range" : "126",
+    "domain" : "8",
+    "attributes" : [ "datatype" ],
+    "id" : "140"
+  } ]
+}
