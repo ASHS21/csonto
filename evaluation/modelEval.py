@@ -1,18 +1,35 @@
+# This script is used to evaluate the ontology model by calculating various metrics and visualizing the results.
+# It uses the Owlready2 library to load the ontology and calculate structural metrics such as class count, property count, and individual count.
+# The script also includes functions to calculate hierarchical metrics, complexity metrics, and ontology richness metrics.
+# It uses a reasoner to check consistency and normalize subclass and equivalent axioms.
+# The calculated metrics are then visualized using bar charts and other plots to provide insights into the ontology's structure and complexity.
+# The script also includes code to analyze subclass distribution and property specificity, which can help identify areas of improvement in the ontology design.
+# The final part of the script demonstrates how to plot the subclass distribution and property specificity using bar charts and print the properties with the highest domain and range specificity.
+
+
+
+
+
+# Import necessary libraries
 from owlready2 import *
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pandas as pd
 
-
+# Set the style for the plots
 sns.set(style="whitegrid")
 
+# Load the ontology and run a reasoner
 onto = get_ontology("/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/csonto-edit.rdf").load()
 sync_reasoner_pellet()
+
+# Print the classes and their superclasses
 for cls in onto.classes():
     for superclass in cls.is_a:
         print(superclass)
 
+# Print the superclasses and their types
 def print_and_process_superclasses(ontology):
     for cls in ontology.classes():
         print(f"\nClass: {cls.name}")
@@ -27,6 +44,7 @@ def print_and_process_superclasses(ontology):
         if complex_descriptions:
             process_complex_descriptions(cls, complex_descriptions)
 
+# Define a function to process complex descriptions
 def process_complex_descriptions(cls, descriptions):
     print(f"Processing complex descriptions for {cls.name}:")
     for desc in descriptions:
@@ -37,35 +55,47 @@ with onto:
     inconsistent_classes = list(default_world.inconsistent_classes())
     print("Inconsistent classes:", inconsistent_classes)
 
+    # Normalize subclass and equivalent axioms  
     def is_complex(description):
         return isinstance(description, (And, Or))
-
+    
+    # Define a function to normalize subclass axioms
     def normalize_subclass_axioms(ontology):
+        # Create new classes for complex descriptions
         for cls in ontology.classes():
+            # Check if the superclass is complex
             new_axioms = []
             for superclass in cls.is_a:
                 if is_complex(superclass):
+                    # Create a new class with a normalized name
                     new_class_name = f"Normalized_{cls.name}"
                     new_cls = types.new_class(new_class_name, (Thing,))
                     new_axioms.append((cls, superclass, new_cls))
+
+            # Replace complex superclasses with new classes
             for cls, old_superclass, new_cls in new_axioms:
                 cls.is_a.remove(old_superclass)
                 cls.is_a.append(new_cls)
                 new_cls.is_a.append(old_superclass)
 
+    # Define a function to normalize equivalent axioms
     def normalize_equivalent_axioms(ontology):
+        # Create new classes for complex descriptions
         for cls in ontology.classes():
             new_axioms = []
+            # Check if the equivalent class is complex
             for equiv_cls in cls.equivalent_to:
                 if is_complex(equiv_cls):
                     new_class_name = f"Equivalent_{cls.name}"
                     new_cls = types.new_class(new_class_name, (Thing,))
                     new_axioms.append((cls, equiv_cls, new_cls))
+            # Replace complex equivalent classes with new classes
             for cls, old_equiv_cls, new_cls in new_axioms:
                 cls.equivalent_to.remove(old_equiv_cls)
                 cls.equivalent_to.append(new_cls)
                 new_cls.is_a.append(old_equiv_cls)
 
+    # Normalize subclass and equivalent axioms by generating unique names for new classes
     def generate_unique_name(cls):
         base_name = cls.name
         counter = 1
@@ -75,6 +105,7 @@ with onto:
                 return new_name
             counter += 1
 
+    # Define a function to replace anonymous individuals with named individuals
     def replace_anonymous_individuals(ontology):
         for cls in ontology.classes():
             for ind in cls.instances():
@@ -87,24 +118,31 @@ with onto:
                             prop[new_ind].append(value)
                     destroy_entity(ind)
 
+    # Define a function to check if an individual is anonymous
     def is_anonymous(individual):
         return not individual.iri
 
     replace_anonymous_individuals(onto)
 
 # Define functions to calculate various structural metrics
+
+# Define a function to count classes
 def count_classes(ontology):
     return len(list(ontology.classes()))
 
+# Dfine a function to count object properties
 def count_object_properties(ontology):
     return len(list(ontology.object_properties()))
 
+# Define a function to count data properties
 def count_data_properties(ontology):
     return len(list(ontology.data_properties()))
 
+# Define a function to count individuals
 def count_individuals(ontology):
     return len(list(ontology.individuals()))
 
+# Define a function to count axioms
 def count_axioms(ontology):
     class_axioms = sum(1 for _ in ontology.classes())
     object_property_axioms = sum(1 for _ in ontology.object_properties())
@@ -112,6 +150,7 @@ def count_axioms(ontology):
     individual_axioms = sum(1 for _ in ontology.individuals())
     return class_axioms + object_property_axioms + data_property_axioms + individual_axioms
 
+# Define functions to calculate hierarchical metrics
 def calculate_max_depth(ontology):
     def depth_of_inheritance_tree(cls, depth=0):
         subclasses = list(cls.subclasses())
@@ -121,19 +160,25 @@ def calculate_max_depth(ontology):
     max_depths = (depth_of_inheritance_tree(cls) for cls in ontology.classes() if {Thing} == set(cls.ancestors()) - {cls})
     return max(max_depths, default=0)
 
+# Define functions to calculate complexity metrics
+
+# Define a function to count leaf classes
 def count_leaf_classes(ontology):
     return sum(1 for cls in ontology.classes() if not list(cls.subclasses()))
 
+# Define a function to calculate the average depth of the inheritance tree
 def depth_of_inheritance_tree(cls, depth=0):
     subclasses = list(cls.subclasses())
     if not subclasses:
         return depth
     return max(depth_of_inheritance_tree(sub, depth + 1) for sub in subclasses)
 
+# Define a function to calculate the average depth of the inheritance tree
 def calculate_average_depth(ontology):
     total_depth = sum(depth_of_inheritance_tree(cls) for cls in ontology.classes())
     return total_depth / count_classes(ontology)
 
+# Define a function to calculate the maximum width of the inheritance tree
 def calculate_maximum_width(ontology):
     level_width = {}
     def traverse(cls, level):
@@ -152,18 +197,22 @@ def calculate_maximum_width(ontology):
     return max(level_width.values(), default=0)
 
 
+# Define a function to calculate tangledness
 def calculate_tangledness(ontology):
     # Count classes that have more than one direct superclass
     tangled_count = sum(1 for cls in ontology.classes()
                         if len([sup for sup in cls.is_a if isinstance(sup, owlready2.ThingClass)]) > 1)
     return tangled_count
 
+# Define a function to calculate the ratio of leaf classes
 def calculate_ratio_of_leaf_classes(ontology):
     return count_leaf_classes(ontology) / count_classes(ontology)
 
+# Define a function to calculate the instance to class ratio
 def calculate_instance_to_class_ratio(ontology):
     return count_individuals(ontology) / count_classes(ontology)
 
+# Define a function to calculate annotation richness
 def calculate_annotation_richness(ontology):
     annotations = 0
     for cls in ontology.classes():
@@ -173,13 +222,14 @@ def calculate_annotation_richness(ontology):
     total_classes = count_classes(ontology)
     return annotations / total_classes if total_classes else 0
 
-
+# Define a function to calculate subclass distribution
 def calculate_subclass_distribution(ontology):
     distribution = {}
     for cls in ontology.classes():
         distribution[cls] = len(list(cls.subclasses()))
     return distribution
 
+# Define a function to calculate property specificity
 def property_specificity(ontology):
     specificity_scores = {}
     for prop in ontology.properties():
@@ -190,7 +240,7 @@ def property_specificity(ontology):
     return specificity_scores
 
 
-
+# Print the calculated metrics
 print("Class Count:", count_classes(onto))
 print("Object Property Count:", count_object_properties(onto))
 print("Data Property Count:", count_data_properties(onto))
@@ -224,6 +274,7 @@ annotation_richness = calculate_annotation_richness(onto)
 subclass_distribution = calculate_subclass_distribution(onto)
 property_specificity = property_specificity(onto)
 
+# Define the metrics to visualize
 counts = [count_classes(onto), count_object_properties(onto), count_data_properties(onto), individual_count]
 hierarchical_metrics = [max_depth, average_depth, maximum_width]
 complexity_metrics = [tangledness, leaf_class_ratio]
@@ -294,6 +345,7 @@ sorted_properties = sorted(properties_with_specificity, key=lambda x: (x[1], x[2
 highest_domain_specificity = sorted_properties[0][1]
 highest_range_specificity = sorted_properties[0][2]
 
+# Print the properties with the highest domain and range specificity
 print("Properties with the highest domain specificity:")
 for name, dom_spec, _ in sorted_properties:
     if dom_spec == highest_domain_specificity:

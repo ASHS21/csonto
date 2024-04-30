@@ -1,3 +1,11 @@
+# Description: This script is used to evaluate the performance of the machine learning model for link prediction.
+# The model is trained on the CSKG dataset and evaluated using a random forest classifier.
+# The script computes various metrics such as accuracy, precision, recall, F1 score, ROC AUC, and PR AUC.
+# It also plots the ROC curve, Precision-Recall curve, and a confusion matrix.
+# The features are extracted from the graph using common neighbors, Jaccard coefficient, Adamic-Adar index, preferential attachment, and node degrees.
+
+
+# Import necessary libraries
 import pandas as pd
 import networkx as nx
 import re
@@ -32,6 +40,7 @@ positive_examples = pd.DataFrame({
     'label': 1
 })
 
+# Function to generate negative examples as there is no data associated with the existence of non-edges
 def generate_negative_examples(graph, num_examples):
     negative_edges = []
     nodes = list(graph.nodes())
@@ -47,6 +56,7 @@ def generate_negative_examples(graph, num_examples):
 
     return negative_edges
 
+# Generate negative examples
 negative_examples = pd.DataFrame(generate_negative_examples(G_undirected, len(G.edges())), columns=['source', 'target', 'label'])
 
 # Combine positive and negative examples, shuffle them

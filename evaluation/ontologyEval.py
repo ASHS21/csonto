@@ -1,3 +1,11 @@
+# This script is used to evaluate the CSONTO ontology against the UCO ontology and a domain dataset.
+# It calculates various metrics such as precision, recall, coverage, cohesion, coupling, and semantic similarity.
+# It also calculates structural quality metrics such as Instantiated Class Ratio (ICR), Instantiated Property Ratio (IPR),
+# Subclass Property Acquisition (SPA), Inverse Multiple Inheritance (IMI), and Specific Property Inheritance (SPI).
+# The script also extracts terms from a PDF document and CSV datasets to compare with the ontologies.
+# Finally, it plots the results for comparison and visualization.
+
+# Import necessary libraries
 import pandas as pd
 import fitz  # PyMuPDF
 import rdflib
@@ -13,7 +21,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.spatial.distance import euclidean, cosine
 from matplotlib_venn import venn2
 
-
+# Define dictionaries to store class features
 csonto_class_features = {}
 uco_class_features = {}
 
@@ -87,6 +95,7 @@ def calculate_coupling(g):
         coupling_counts[str(cls)] = len(external_refs)
     return coupling_counts
 
+# Calculate the semantic similarity between classes
 def calculate_semantic_similarity(g, class_features):
     similarity_scores = {}
     # Assuming feature extraction has been done and is available in `class_features`
@@ -102,6 +111,7 @@ def calculate_semantic_similarity(g, class_features):
                 similarity_scores[(cls1, cls2)] = similarity
     return similarity_scores
 
+# Calculate the average semantic similarity between classes
 def calculate_average_semantic_similarity(g, class_features):
     similarity_scores = {}
     total_similarity = 0
@@ -158,6 +168,7 @@ def calculate_ci(cls, graph, total_instances, depth=0):
             ci += calculate_ci(subclass, graph, total_instances, depth + 1)
     return ci
 
+# Calculate the Specific Property Inheritance (SPI) for a class
 def get_subclass_specific_properties(cls, graph):
     properties = set(graph.predicates(subject=cls))
     for superclass in graph.objects(cls, RDFS.subClassOf):
@@ -170,31 +181,36 @@ def calculate_icr(graph):
     instantiated_classes = {cls for cls in total_classes if list(graph.subjects(RDF.type, cls))}
     return len(instantiated_classes) / len(total_classes)
 
+# Calculate the Instantiated Property Ratio (IPR)
 def calculate_ipr(graph):
     total_properties = set(graph.predicates())
     instantiated_properties = {prop for prop in total_properties if list(graph.objects(predicate=prop))}
     return len(instantiated_properties) / len(total_properties)
 
-
+# Calculate the Subclass Property Acquisition (SPA)
 def calculate_spa(graph):
     total_classes = set(graph.subjects(RDF.type, OWL.Class))
     spa_sum = sum(len(get_subclass_specific_properties(cls, graph)) for cls in total_classes)
     return spa_sum / len(total_classes)
 
+# Calculate the Inverse Multiple Inheritance (IMI)
 def calculate_imi(graph):
     total_classes = set(graph.subjects(RDF.type, OWL.Class))
     imi_sum = sum(1 / len(set(graph.objects(cls, RDFS.subClassOf))) for cls in total_classes if list(graph.objects(cls, RDFS.subClassOf)))
     return imi_sum / len(total_classes)
 
+# Calculate the Specific Property Inheritance (SPI) for a class
 def calculate_spi_for_class(cls, graph):
     specific_properties = get_subclass_specific_properties(cls, graph)
     used_properties = {prop for prop in specific_properties if list(graph.objects(predicate=prop))}
     total_triples = len(list(graph.triples((None, None, cls))))
     return len(used_properties) / total_triples if total_triples else 0
 
+# Calculate the average Specific Property Inheritance (SPI) for all classes
 def calculate_spi_per_class(graph):
     return {cls: calculate_spi_for_class(cls, graph) for cls in graph.subjects(RDF.type, OWL.Class)}
 
+# Calculate the average Specific Property Inheritance (SPI) for all classes
 def calculate_spi_average(graph):
     spi_values = calculate_spi_per_class(graph)
     return sum(spi_values.values()) / len(spi_values) if spi_values else 0
@@ -266,6 +282,8 @@ semantic_similarity_scores2 = calculate_semantic_similarity(g_new, uco_class_fea
 csv_files = ['/Users/alialmoharif/Desktop/FYP/Dataset/5.12 Cybersecurity Detail.csv',
              '/Users/alialmoharif/Desktop/FYP/Dataset/Access Log Jan 01 2017.csv',
              '/Users/alialmoharif/Desktop/FYP/Dataset/Cybersecurity Summary.csv']
+
+# Extract terms from each column in the CSV files
 dataset_terms = set()
 for file in csv_files:
     df = pd.read_csv(file)
@@ -283,6 +301,7 @@ true_positives1 = ontology_terms.intersection(combined_terms)
 predicted_positives1 = len(ontology_terms)  # All ontology terms considered as predictions
 actual_positives1 = len(combined_terms)  # All terms from domain considered as actual positives
 
+# Calculate new precision, recall, and coverage
 precision1 = len(true_positives1) / predicted_positives1 if predicted_positives1 else 0
 recall1 = len(true_positives1) / actual_positives1 if actual_positives1 else 0
 coverage1 = len(true_positives1) / actual_positives1 if actual_positives1 else 0
@@ -400,7 +419,7 @@ for i, metric in enumerate(metrics):
 
 
 
-
+# Define the metrics and their values for each ontology
 def plot_structural_metrics(g_csonto, g_uco):
     # Calculate metrics for CSONTO
     csonto_icr = calculate_icr(g_csonto)
@@ -499,6 +518,7 @@ def plot_comparison(metrics, values_ontology1, values_ontology2, ontology1_label
     plt.tight_layout()  # Adjust layout
     plt.show()
 
+# Define the metrics and their values for each ontology
 csonto_metrics = ['Cohesion', 'Coupling', 'Semantic Similarity']
 csonto_values = [
     sum(calculate_cohesion(g).values()) / len(calculate_cohesion(g)),
@@ -506,6 +526,7 @@ csonto_values = [
     calculate_average_semantic_similarity(g, csonto_class_features)
 ]
 
+# Call the function to plot the comparison
 uco_metrics = ['Cohesion', 'Coupling', 'Semantic Similarity']
 uco_values = [
     sum(calculate_cohesion(g_new).values()) / len(calculate_cohesion(g_new)),
@@ -513,8 +534,10 @@ uco_values = [
     calculate_average_semantic_similarity(g_new, uco_class_features)
 ]
 
+# Call the function to plot the comparison
 plot_comparison(csonto_metrics, csonto_values, uco_values, 'CSONTO', 'UCO', 'Structural Quality Metrics Comparison')
 
+# Define the metrics and their values for each ontology and plot them as venn diagram
 venn2([new_ontology_terms, combined_terms], ('UCO', 'Dataset'))
 plt.show()
 

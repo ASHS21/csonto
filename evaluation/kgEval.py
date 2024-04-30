@@ -1,3 +1,12 @@
+# This script is used to evaluate the Knowledge Graph (KG) generated from the CSKG dataset.
+# The script calculates various metrics such as density, diameter, global clustering coefficient, average local clustering coefficient, and centrality measures.
+# It also performs community detection, path length calculations, and common neighbors link prediction.
+# It also use the Infomap algorithm to detect communities in the graph.
+# The script generates LaTeX documents for each section of the analysis results.
+# The results are saved to a text file for further analysis and reporting.
+
+
+# Import necessary libraries
 import json
 from neo4j import GraphDatabase
 import networkx as nx
@@ -27,21 +36,25 @@ class Neo4jConnection:
             auth=(self.config['neo4j']['user'], self.config['neo4j']['password'])
         )
 
+    # Load the configuration from a JSON file
     @staticmethod
     def load_config(config_path):
         with open(config_path, 'r') as file:
             return json.load(file)
-
+        
+    # Close the driver connection
     def close(self):
         if self.driver:
             self.driver.close()
 
+    # Fetch graph data based on a Cypher query
     def fetch_graph_data(self, query):
         with self.driver.session() as session:
             results = session.run(query)
             records = list(results)  
         return records
     
+    # Fetch graph data for node and edge count
     def fetch_graph_data2(self):
         with self.driver.session() as session:
             # Fetch all distinct nodes regardless of their labels or relationships
@@ -55,6 +68,7 @@ class Neo4jConnection:
 
             return node_count_result, edge_count_result
 
+# stating the output file path
 output_file_path = 'analysis_results.txt'
 
 # Open the output file in write mode and redirect stdout to this file
@@ -62,10 +76,11 @@ with open(output_file_path, 'w') as output_file:
     original_stdout = sys.stdout  
     sys.stdout = output_file  
 
+    # Create a Neo4j connection
     neo4j_conn = Neo4jConnection("/Users/alialmoharif/Desktop/FYP/Code/final-year-project-ASHS21/csonto/target/csonto/dashboards/pages/config.json")
 
     
-
+    # Function to generate LaTeX documents for centrality measures
     def generate_latex_documents(G):
                     sections = {
                         'Detected Communities': generate_communities_section,
@@ -87,12 +102,14 @@ with open(output_file_path, 'w') as output_file:
                             func(G, file)
                             file.write("\\end{document}\n")
 
+    # Function to generate LaTeX table for community section
     def generate_communities_section(G, file):
         communities = list(greedy_modularity_communities(G))
         for i, community in enumerate(communities, 1):
             community_labels = [G.nodes[node]['label'] for node in community]
             file.write(f"Community {i}: " + ", ".join(community_labels) + "\n\n")
 
+    # Function to generate LaTeX table for pagerank sections    
     def generate_pagerank_section(G, file):
         pagerank = nx.pagerank(G)
         file.write("\\begin{longtable}{ll}\n")
@@ -101,6 +118,7 @@ with open(output_file_path, 'w') as output_file:
             file.write(f"{label} & {score:.4f} \\\\\n")
         file.write("\\end{longtable}\n\n")
 
+    # Function to generate LaTeX table for clustering coefficient section
     def generate_clustering_coefficient_section(G, file):
         clustering = nx.clustering(G)
         file.write("\\begin{longtable}{ll}\n")
@@ -110,6 +128,7 @@ with open(output_file_path, 'w') as output_file:
                 file.write(f"{label} & {coeff:.4f} \\\\\n")
         file.write("\\end{longtable}\n\n")
 
+    # Function to generate LaTeX table for path lengths section
     def generate_path_lengths_section(G, file):
         path_lengths = dict(nx.all_pairs_shortest_path_length(G))
         for source, targets in path_lengths.items():
@@ -118,12 +137,14 @@ with open(output_file_path, 'w') as output_file:
                 target_label = G.nodes[target].get('label', f'Node {target}')
                 file.write(f"Shortest path from {source_label} to {target_label} is {length} steps\n")
 
+    # Function to generate LaTeX table for connectivity section
     def generate_connectivity_section(G, file):
         is_strongly_connected = nx.is_strongly_connected(G)
         file.write(f"The graph is {'strongly' if is_strongly_connected else 'not strongly'} connected.\n")
         is_weakly_connected = nx.is_weakly_connected(G)
         file.write(f"The graph is {'weakly' if is_weakly_connected else 'not weakly'} connected.\n\n")
 
+    # Function to generate LaTeX table for common neighbors scores section
     def generate_common_neighbors_scores_section(G, file):
         
         cn_scores = common_neighbors_link_prediction(G)
@@ -184,6 +205,7 @@ with open(output_file_path, 'w') as output_file:
         predicted_positives = len(kg_terms)
         actual_positives = len(gold_standard_terms)
         
+        # Calculate metrics precision, recall, and coverage
         precision = len(true_positives) / predicted_positives if predicted_positives else 0
         recall = len(true_positives) / actual_positives if actual_positives else 0
         coverage = len(true_positives) / actual_positives if actual_positives else 0
@@ -244,7 +266,7 @@ with open(output_file_path, 'w') as output_file:
     terms_from_csvs = extract_terms_from_csvs(csv_files)
     all_dataset_terms = terms_from_pdf.union(terms_from_csvs)
 
-
+    # Extract terms from the KG
     kg_terms = extract_terms_from_csv(csv_file_path)  
 
     # Compare and get results
@@ -297,6 +319,7 @@ with open(output_file_path, 'w') as output_file:
     print(f"Precision: {precision:.2f}")
     print(f"Recall: {recall:.2f}")
 
+    # Calculate the number of nodes and edges in the graph
     N, E = neo4j_conn.fetch_graph_data2()
 
     # Calculate sparsity beta
@@ -307,6 +330,7 @@ with open(output_file_path, 'w') as output_file:
     print(f"Number of edges (E): {E}")
     print(f"Sparsity (beta): {beta}")
 
+    # Define the queries to be executed
     queries = {
             "reports_to and part_of": "MATCH (n:CyberSecurityScore)<-[r:REPORTS_TO]-(m) RETURN n, r, m UNION MATCH (n)<-[r:PART_OF]-(m) RETURN n, r, m",
             "reports_to": "MATCH (n:CyberSecurityScore)<-[r:REPORTS_TO]-(m) RETURN n, r, m ",
@@ -314,13 +338,14 @@ with open(output_file_path, 'w') as output_file:
             "full_graph": "MATCH (n)-[r]-(m) RETURN n, r, m"
 
         }
-
+    # Process each query
     for query_name, query in queries.items():
             records = neo4j_conn.fetch_graph_data(query)
             if not records:
                 print(f"No records to process for {query_name}.")
                 continue
-
+            
+            # Create a directed graph
             G = nx.DiGraph()
 
             # Populate the graph with nodes and edges along with labels
@@ -330,6 +355,7 @@ with open(output_file_path, 'w') as output_file:
                 source_name = n.get('name', f'Node_{source_id}')
                 target_name = m.get('name', f'Node_{target_id}')
 
+                # Add nodes and edges to the graph
                 G.add_node(source_id, label=source_name)
                 G.add_node(target_id, label=target_name)
                 G.add_edge(source_id, target_id)
@@ -361,6 +387,7 @@ with open(output_file_path, 'w') as output_file:
             source_node = 0
             target_node = 10
 
+            # Check if the source and target nodes exist in the graph
             if G.has_node(source_node) and G.has_node(target_node):
                 shortest_paths = nx.shortest_path(G, source=source_node, target=target_node)
                 print(f"Shortest path from {source_node} to {target_node}: {shortest_paths}")
@@ -449,6 +476,7 @@ with open(output_file_path, 'w') as output_file:
                 else:
                     top_centrality = non_zero_centrality
 
+                # Sort the centrality values and labels
                 labels = [G.nodes[node_id]['label'] for node_id in top_centrality.keys()]
                 values = list(top_centrality.values())
                 sorted_values, sorted_labels = zip(*sorted(zip(values, labels), reverse=True))
@@ -503,12 +531,14 @@ with open(output_file_path, 'w') as output_file:
                 community_labels = [G.nodes[node]['label'] for node in community]
                 print(f"Community {i}: {community_labels}")
 
+            # PageRank and Clustering Coefficient
             pagerank = nx.pagerank(G)
             filtered_pagerank = filter_results(pagerank)
             for node, score in pagerank.items():
                 label = G.nodes[node].get('label', f'Node {node}')
                 print(f"{label} (ID {node}): {round(score, 4)}")
 
+            # Clustering Coefficient
             clustering = nx.clustering(G)
             filtered_clustering = filter_results(clustering, threshold=0.0004)
             for node, coeff in clustering.items():
@@ -516,6 +546,7 @@ with open(output_file_path, 'w') as output_file:
                     label = G.nodes[node].get('label', f'Node {node}')
                     print(f"{label} (ID {node}): {round(coeff, 4)}")
 
+            # Path Lengths flitered by a minimum path length threshold
             def filter_path_lengths(data, threshold=5):
                 """ Filter path lengths by a minimum path length threshold """
                 filtered_data = {}
@@ -526,7 +557,7 @@ with open(output_file_path, 'w') as output_file:
                         filtered_data[source] = filtered_targets
                 return filtered_data
 
-            
+            # Calculate path lengths
             path_lengths = dict(nx.all_pairs_shortest_path_length(G))
             filtered_paths = filter_path_lengths(path_lengths, threshold=2)
 
@@ -564,7 +595,7 @@ with open(output_file_path, 'w') as output_file:
                 v_label = G.nodes[v].get('label', f'Node {v}')
                 print(f"({u_label}, {v_label}): {round(score, 4)}")
 
-            # Assuming 'G' is your NetworkX graph
+            # Infomap Community Detection
             im = Infomap()
 
             # Add edges to the Infomap object
@@ -580,10 +611,10 @@ with open(output_file_path, 'w') as output_file:
             for node, module in communities.items():
                 print(f"Node {node} is in community {module}")
 
-            # Now you can process or visualize the communities
+           # Louvain Community Detection
             print("Node to Community Assignments:", communities)
 
-            # Optionally, you can iterate through nodes in your graph and print their community
+            # Print the community assignments
             for node in G.nodes():
                 community = communities[node]
                 print(f"Node {node} is in community {community}")
@@ -593,7 +624,7 @@ with open(output_file_path, 'w') as output_file:
             # Close the Neo4j connection
             neo4j_conn.close()
 
-        
+            # Print the graph processing results
             print(f"Processed graph for query '{query_name}' with {G.number_of_nodes()} nodes and {G.number_of_edges()} edges")
                     
 
